@@ -6,10 +6,12 @@
   box-sizing: border-box;
 }
 
+/* NOTE: no overflow-x here. Clipping the root (or body) turns it into a
+   scroll container and silently breaks `position: sticky` on the photo
+   rails — decorative bleeds are clipped at their own wrapper instead. */
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -28,7 +30,6 @@ html {
 
 body {
   margin: 0;
-  overflow-x: hidden;
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);

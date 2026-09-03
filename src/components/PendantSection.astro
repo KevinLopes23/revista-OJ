@@ -141,6 +141,13 @@ import SectionDivider from "./SectionDivider.astro";
     transform: translateY(-1rem);
   }
 
+  /* the motif is scaled well past .photos, so the text column has to sit
+     above it — on mobile the two stack and it would wash over the copy */
+  .text {
+    position: relative;
+    z-index: 1;
+  }
+
   h2 {
     font-style: italic;
     font-size: var(--fs-h2);

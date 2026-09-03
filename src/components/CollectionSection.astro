@@ -9,6 +9,7 @@ import brincos from "../assets/photos/produto-brincos-azul.jpg";
 import aneis from "../assets/photos/produto-aneis-rosa.jpg";
 import pingenteMadreperola from "../assets/photos/produto-pingente-madreperola.jpg";
 import colarRubi from "../assets/photos/produto-colar-rubi.jpg";
+import trencadisPingente from "../assets/photos/trencadis-pingente-1.jpg";
 import SectionDivider from "./SectionDivider.astro";
 
 // ensaio fotográfico — fotos de lifestyle ao ar livre
@@ -68,8 +69,12 @@ const gallery = [
   { src: regataBranca, alt: "Modelo com regata branca e colar dourado, ao ar livre", wide: true },
   { src: tenis, alt: "Modelo jogando tênis ao ar livre, usando joias da coleção", tall: true },
   { src: vestidoVento, alt: "Modelo caminhando com vestido azul ao vento", tall: true },
-  { src: perfilBrinco, alt: "Perfil de modelo sorrindo, brinco em destaque contra o céu", wide: true },
+  { src: perfilBrinco, alt: "Perfil de modelo sorrindo, brinco em destaque contra o céu" },
 ];
+// NOTE: on the 2-column mobile grid a `wide` item takes a whole row, so the
+// non-wide items have to stay an EVEN count — otherwise the last one is left
+// alone with an empty cell beside it that `grid-auto-flow: dense` can't fill
+// (there is no later item to pull back into the hole).
 
 const mosaic = [
   { src: brincos, alt: "Brincos e anéis dourados com pedras azuis, still sobre fundo azul" },
@@ -89,7 +94,10 @@ const mosaic = [
   { src: colaresColoridos, alt: "Colares de contas coloridas, still sobre fundo rosa" },
   { src: brincosDrusa, alt: "Brincos de drusa roxa e laranja, still sobre fundo amarelo" },
   { src: pulseirasConjunto, alt: "Conjunto de pulseiras finas sobrepostas no pulso" },
+  { src: trencadisPingente, alt: "Pingente autoral Trencadís em prata com zircônias coloridas" },
 ];
+// NOTE: keep this a multiple of 6 — the grid is 3 columns on mobile and 6 on
+// desktop, so any other count leaves a hole in the last row.
 ---
 
 <section class="collection" id="tessalia" aria-labelledby="collection-heading">

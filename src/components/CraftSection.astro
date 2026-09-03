@@ -223,11 +223,13 @@ const joalheriaRail = [
   .craft {
     background: var(--chapter-craft-bg);
     padding-block: var(--space-section);
-    overflow-x: hidden;
   }
 
+  /* clipped here, not on the section — an overflow on .craft would turn it
+     into a scroll container and break the sticky rails */
   .head {
     position: relative;
+    overflow: hidden;
     max-width: 46rem;
     margin-bottom: clamp(2rem, 5vw, 3rem);
   }
@@ -272,6 +274,12 @@ const joalheriaRail = [
     font-size: clamp(1.05rem, 1rem + 0.4vw, 1.4rem);
     color: var(--color-text-muted);
     margin-top: 0.5rem;
+  }
+
+  .banner,
+  .spread {
+    position: relative;
+    z-index: 1;
   }
 
   .banner {

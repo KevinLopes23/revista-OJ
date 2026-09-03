@@ -1,13 +1,21 @@
 ---
+import { Image } from "astro:assets";
 import SectionDivider from "./SectionDivider.astro";
+import historia from "../assets/photos/history-necklace-egypt.jpg";
+import tessalia from "../assets/photos/ensaio-cerca-perfil.jpg";
+import pecaAutoral from "../assets/photos/trencadis-pingente-2.jpg";
+import oficina from "../assets/photos/craft-fachada.jpg";
+import entrevista from "../assets/photos/elaine-retrato.jpg";
 
 const items = [
-  { href: "#historia", title: "Por que usamos joias?", desc: "Um mergulho na história da joalheria, buscando entender as intenções humanas desde a antiguidade." },
-  { href: "#tessalia", title: "Tessalia, arte em fragmentos", desc: "Pesquisas, desenvolvimento e a arte envolvida na elaborada coleção primavera/verão 2026 OJ." },
-  { href: "#peca-autoral", title: "Trencadís, um pingente autoral", desc: "A criação do pingente autoral que traduz em formas e cores a inspiração dos mosaicos de Tessalia." },
-  { href: "#oficina", title: "A Oficina das Joias", desc: "A dedicação e qualidade da tradição de mais de 70 anos, unidas à inovação e tecnologia." },
-  { href: "#entrevista", title: "Entrevista com Elaine", desc: "Sobre a sua trajetória na OJ." },
-  { href: "#pinte", title: "Pinte o mosaico", desc: "Uma versão digital do cartão de colorir que acompanha esta edição." },
+  { href: "#historia", img: historia, alt: "Colar egípcio de ouro em formato de gola", title: "Por que usamos joias?", desc: "Um mergulho na história da joalheria, buscando entender as intenções humanas desde a antiguidade." },
+  { href: "#tessalia", img: tessalia, alt: "Bancos de mosaico do Park Güell, em Barcelona", title: "Tessalia, arte em fragmentos", desc: "Pesquisas, desenvolvimento e a arte envolvida na elaborada coleção primavera/verão 2026 OJ." },
+  { href: "#peca-autoral", img: pecaAutoral, alt: "Pingente Trencadís de perto, com as pedras coloridas encravadas", title: "Trencadís, um pingente autoral", desc: "A criação do pingente autoral que traduz em formas e cores a inspiração dos mosaicos de Tessalia." },
+  { href: "#oficina", img: oficina, alt: "Fachada da Oficina das Joias, com o logo dourado sobre fundo azul", title: "A Oficina das Joias", desc: "A dedicação e qualidade da tradição de mais de 70 anos, unidas à inovação e tecnologia." },
+  { href: "#entrevista", img: entrevista, alt: "Elaine Batista Corrales sorrindo ao ar livre", title: "Entrevista com Elaine", desc: "Sobre a sua trajetória na OJ." },
+  // the coloring card lives in public/ (served byte-for-byte for the game's
+  // flood-fill), so it comes in as a plain <img> rather than astro:assets
+  { href: "#pinte", raw: "/game/mosaic-lineart.png", alt: "Traço do mosaico do cartão de colorir", title: "Pinte o mosaico", desc: "Uma versão digital do cartão de colorir que acompanha esta edição." },
 ];
 ---
 
@@ -20,8 +28,17 @@ const items = [
         items.map((item) => (
           <li>
             <a href={item.href}>
-              <span class="title">{item.title}</span>
-              <span class="desc">{item.desc}</span>
+              <span class="thumb">
+                {item.img ? (
+                  <Image src={item.img} alt={item.alt} widths={[160, 280]} sizes="(min-width: 40rem) 7.5rem, 5.5rem" />
+                ) : (
+                  <img src={item.raw} alt={item.alt} width="280" height="280" loading="lazy" decoding="async" />
+                )}
+              </span>
+              <span class="text">
+                <span class="title">{item.title}</span>
+                <span class="desc">{item.desc}</span>
+              </span>
             </a>
           </li>
         ))
@@ -58,6 +75,40 @@ const items = [
 
   a {
     text-decoration: none;
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  @media (min-width: 40rem) {
+    a {
+      grid-template-columns: 7rem 1fr;
+      gap: 1.4rem;
+    }
+  }
+
+  .thumb {
+    display: block;
+    overflow: hidden;
+    border-radius: 3px;
+  }
+
+  .thumb :global(img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  a:hover .thumb :global(img),
+  a:focus-visible .thumb :global(img) {
+    transform: scale(1.07);
+  }
+
+  .text {
     display: grid;
     gap: 0.3rem;
   }
