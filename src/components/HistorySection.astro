@@ -10,7 +10,10 @@ import jewelryBox from "../assets/photos/history-jewelry-box.jpg";
 import modelChain from "../assets/photos/history-model-chain.jpg";
 import SectionDivider from "./SectionDivider.astro";
 
-const rail = [
+// split 4/4 so each rail fits the viewport and can stay pinned like the
+// workshop chapter's, instead of needing a scrollbar of its own. The break
+// follows the text's own chronology: pre-history → Egypt, then Byzantium → today.
+const railEarly = [
   {
     src: shells,
     alt: "Conchas marinhas perfuradas escavadas no Marrocos, com marcas de pigmento",
@@ -35,6 +38,9 @@ const rail = [
     caption: "Rainha Nefertari jogando Senet, Egito, c. 1290–1224 a.C. The Metropolitan Museum of Art, New York. Domínio público.",
     archival: true,
   },
+];
+
+const railLate = [
   {
     src: byzantineMosaic,
     alt: "Mosaico bizantino retratando a rainha Theodora e membros de sua corte, em vestes ricamente ornamentadas",
@@ -125,6 +131,45 @@ const rail = [
         espiritualidade: ela transmitia proteção, saúde, força ou passagem segura para o mundo dos
         mortos.
       </p>
+    </div>
+
+    <aside class="rail">
+      {
+        railEarly.map((item, i) => (
+          <figure class="rail-item" data-reveal>
+            <span class:list={["rail-frame", { archival: item.archival }]}>
+              <Image
+                src={item.src}
+                alt={item.alt}
+                widths={[420, 700, 1000]}
+                sizes="(min-width: 64rem) 28vw, 90vw"
+                loading={i < 2 ? "eager" : "lazy"}
+              />
+              {item.archival && <span class="archival-tag">Acervo</span>}
+            </span>
+            <figcaption>{item.caption}</figcaption>
+          </figure>
+        ))
+      }
+    </aside>
+  </div>
+
+  <div class="container spread reverse">
+    <aside class="rail">
+      {
+        railLate.map((item) => (
+          <figure class="rail-item" data-reveal>
+            <span class:list={["rail-frame", { archival: item.archival }]}>
+              <Image src={item.src} alt={item.alt} widths={[420, 700, 1000]} sizes="(min-width: 64rem) 28vw, 90vw" loading="lazy" />
+              {item.archival && <span class="archival-tag">Acervo</span>}
+            </span>
+            <figcaption>{item.caption}</figcaption>
+          </figure>
+        ))
+      }
+    </aside>
+
+    <div class="body">
       <p>
         Ao longo da Antiguidade e dos séculos seguintes, adornar-se tornou-se também uma forma
         pública de organizar a sociedade. Anéis, coroas, broches, medalhões, colares e insígnias
@@ -155,26 +200,6 @@ const rail = [
         emoções visíveis.
       </p>
     </div>
-
-    <aside class="rail">
-      {
-        rail.map((item, i) => (
-          <figure class="rail-item" data-reveal>
-            <span class:list={["rail-frame", { archival: item.archival }]}>
-              <Image
-                src={item.src}
-                alt={item.alt}
-                widths={[420, 700, 1000]}
-                sizes="(min-width: 64rem) 28vw, 90vw"
-                loading={i < 2 ? "eager" : "lazy"}
-              />
-              {item.archival && <span class="archival-tag">Acervo</span>}
-            </span>
-            <figcaption>{item.caption}</figcaption>
-          </figure>
-        ))
-      }
-    </aside>
   </div>
 </section>
 
@@ -261,9 +286,19 @@ const rail = [
     align-items: start;
   }
 
+  .spread + .spread {
+    margin-top: clamp(3rem, 7vw, 5.5rem);
+  }
+
   @media (min-width: 64rem) {
     .spread {
       grid-template-columns: 1.3fr 1fr;
+    }
+    .spread.reverse {
+      grid-template-columns: 1fr 1.3fr;
+    }
+    .spread.reverse .rail {
+      order: -1;
     }
   }
 
@@ -304,16 +339,15 @@ const rail = [
     }
   }
 
+  /* two columns of four, pinned — same behaviour as the workshop chapter.
+     A single tall column needed its own scrollbar, which read as a stray
+     inner scroll area and never advanced with the article text. */
   @media (min-width: 64rem) {
     .rail {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       position: sticky;
       top: 5.5rem;
       align-self: start;
-      max-height: calc(100svh - 7rem);
-      overflow-y: auto;
-      padding-right: 0.25rem;
-      scrollbar-width: thin;
     }
   }
 

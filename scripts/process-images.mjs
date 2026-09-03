@@ -36,7 +36,9 @@ for (const dir of [outPhotos, outGame, outGamePublic]) {
 // every raster on every page.
 const PHOTOS = [
   ["p01_img0_2641x3728.jpeg", "cover-hero.jpg", 2600],
-  ["p05_img1_1016x963.jpeg", "history-shells.jpg", 1600],
+  // p05_img1 is a decorative gradient triangle from the page layout, not a
+  // photo — the Bizmoune shells are the wide specimen strip in p05_img0
+  ["p05_img0_3600x1039.jpeg", "history-shells.jpg", 1800],
   ["p05_img6_3187x3162.jpeg", "history-necklace-egypt.jpg", 1800],
   ["p05_img4_1701x1688.jpeg", "history-egypt-painting.jpg", 1600],
   ["p06_img0_3281x3399.jpeg", "history-victorian.jpg", 1800],
