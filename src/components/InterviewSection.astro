@@ -235,20 +235,31 @@ import SectionDivider from "./SectionDivider.astro";
       grid-row: 1 / 3;
     }
 
-    .photos img:nth-child(2) {
+    /* the pair stacks to roughly the lead photo's height on its own —
+       derived from the 1.15fr/0.85fr split — so nothing has to stretch */
+    .photos img:nth-child(2),
+    .photos img:nth-child(3) {
       grid-column: 2;
+      aspect-ratio: 8 / 7;
+    }
+
+    .photos img:nth-child(2) {
       grid-row: 1;
     }
 
     .photos img:nth-child(3) {
-      grid-column: 2;
       grid-row: 2;
     }
   }
 
+  /* height comes from the aspect ratio, never from a percentage: here the
+     <img> is itself the grid item, so `height: 100%` asks the row for a
+     height the row can only get back from the image. Chrome breaks the
+     cycle via aspect-ratio; iOS Safari collapses the row instead, which
+     dropped the photos out of the flow and behind the article text. */
   .photos img {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
     aspect-ratio: 3 / 4;
     display: block;
