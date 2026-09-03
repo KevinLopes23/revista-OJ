@@ -31,6 +31,7 @@ const joalheriaRail = [
   <SectionDivider variant="blue" />
 
   <header class="container head">
+    <div class="motif" aria-hidden="true"><SectionDivider variant="blue" /></div>
     <p class="kicker">Reportagem</p>
     <h2 id="craft-heading" data-reveal>A Oficina das Joias</h2>
     <p class="subtitle">Há mais de 70 anos no mercado, buscando cada vez mais inovação.</p>
@@ -222,11 +223,32 @@ const joalheriaRail = [
   .craft {
     background: var(--chapter-craft-bg);
     padding-block: var(--space-section);
+    overflow-x: hidden;
   }
 
   .head {
+    position: relative;
     max-width: 46rem;
     margin-bottom: clamp(2rem, 5vw, 3rem);
+  }
+
+  .head .motif {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: 0;
+    transform: scale(2) rotate(-6deg) translateX(15%);
+  }
+
+  .head .kicker,
+  .head h2,
+  .head .subtitle {
+    position: relative;
+    z-index: 1;
   }
 
   .kicker {

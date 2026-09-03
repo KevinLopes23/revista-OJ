@@ -8,6 +8,7 @@ import byzantineMosaic from "../assets/photos/history-mosaico-bizantino.jpg";
 import victorian from "../assets/photos/history-victorian.jpg";
 import jewelryBox from "../assets/photos/history-jewelry-box.jpg";
 import modelChain from "../assets/photos/history-model-chain.jpg";
+import SectionDivider from "./SectionDivider.astro";
 
 const rail = [
   {
@@ -62,6 +63,7 @@ const rail = [
 
 <section class="history" id="historia" aria-labelledby="history-heading">
   <div class="container head">
+    <div class="motif" aria-hidden="true"><SectionDivider variant="blue" /></div>
     <p class="kicker">Introdução</p>
     <h2 id="history-heading" data-reveal>Por que usamos joias?</h2>
     <p class="subtitle">A origem e a função dos nossos acessórios cotidianos</p>
@@ -180,11 +182,32 @@ const rail = [
   .history {
     background: var(--chapter-history-bg);
     padding-block: var(--space-section);
+    overflow-x: hidden;
   }
 
   .head {
+    position: relative;
     max-width: 46rem;
     margin-bottom: 2rem;
+  }
+
+  .motif {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+    transform: scale(2.1) rotate(6deg) translateX(-10%);
+  }
+
+  .kicker,
+  h2,
+  .subtitle {
+    position: relative;
+    z-index: 1;
   }
 
   h2 {

@@ -22,7 +22,8 @@ const team = [
   <SectionDivider variant="green" />
 
   <div class="container grid">
-    <div>
+    <div class="lede">
+      <div class="motif" aria-hidden="true"><SectionDivider variant="green" /></div>
       <p class="kicker">Contate-nos</p>
       <h2 id="contact-heading" data-reveal>Vamos criar<br />sua próxima joia</h2>
       <p class="subtitle measure">
@@ -32,7 +33,7 @@ const team = [
 
       <ul class="contact-list">
         <li>
-          <a href="https://wa.me/5514997316864" rel="noopener">
+          <a href="https://wa.me/5514997316864" rel="noopener" target="_blank">
             <span class="label">WhatsApp / Telefone</span>
             <span class="value">(14) 99731-6864</span>
           </a>
@@ -44,7 +45,7 @@ const team = [
           </a>
         </li>
         <li>
-          <a href="https://www.oficinadasjoias.com.br" rel="noopener">
+          <a href="https://www.oficinadasjoias.com.br" rel="noopener" target="_blank">
             <span class="label">Site</span>
             <span class="value">www.oficinadasjoias.com.br</span>
           </a>
@@ -97,6 +98,28 @@ const team = [
     background: var(--p-ink);
     color: var(--p-cream);
     padding-block: var(--space-section);
+    overflow-x: hidden;
+  }
+
+  .lede {
+    position: relative;
+  }
+
+  .motif {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+    transform: scale(2.2) rotate(5deg) translateX(-15%);
+  }
+
+  .lede > :not(.motif) {
+    position: relative;
+    z-index: 1;
   }
 
   .grid {

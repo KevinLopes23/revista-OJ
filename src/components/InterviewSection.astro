@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import retrato from "../assets/photos/elaine-retrato.jpg";
 import revista from "../assets/photos/elaine-revista.jpg";
 import mesa from "../assets/photos/elaine-mesa.jpg";
+import SectionDivider from "./SectionDivider.astro";
 ---
 
 <section class="interview" id="entrevista" aria-labelledby="interview-heading">
@@ -20,6 +21,7 @@ import mesa from "../assets/photos/elaine-mesa.jpg";
       <Image src={retrato} alt="Elaine Batista Corrales sorrindo ao ar livre" widths={[420, 800]} sizes="(min-width: 55rem) 22rem, 60vw" />
       <Image src={revista} alt="Elaine folheando uma edição da revista OJ" widths={[380, 700]} sizes="(min-width: 55rem) 18rem, 50vw" />
       <Image src={mesa} alt="Elaine sentada a uma mesa ao ar livre, durante a entrevista" widths={[380, 700]} sizes="(min-width: 55rem) 18rem, 50vw" />
+      <div class="motif" aria-hidden="true"><SectionDivider variant="pink" /></div>
     </div>
 
     <div class="body measure">
@@ -114,6 +116,7 @@ import mesa from "../assets/photos/elaine-mesa.jpg";
   .interview {
     background: var(--p-white);
     padding-block: var(--space-section);
+    overflow-x: hidden;
   }
 
   .grid {
@@ -160,28 +163,57 @@ import mesa from "../assets/photos/elaine-mesa.jpg";
   }
 
   .photos {
+    position: relative;
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
   }
 
+  .motif {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: 0;
+    transform: scale(1.9) rotate(-5deg);
+  }
+
+  /* the asymmetric 3-photo composition (one tall lead + two stacked)
+     only has room to breathe once .grid itself goes two-column —
+     below that, a narrow 1.15fr/0.85fr split crushes each photo into
+     a sliver and crops awkwardly, so mobile gets a plain, even grid */
   .photos :global(picture:first-child) {
-    grid-column: 1;
-    grid-row: 1 / 3;
+    grid-column: 1 / -1;
   }
 
-  .photos :global(picture:nth-child(2)) {
-    grid-column: 2;
-    grid-row: 1;
-  }
+  @media (min-width: 60rem) {
+    .photos {
+      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-rows: auto auto;
+    }
 
-  .photos :global(picture:nth-child(3)) {
-    grid-column: 2;
-    grid-row: 2;
+    .photos :global(picture:first-child) {
+      grid-column: 1;
+      grid-row: 1 / 3;
+    }
+
+    .photos :global(picture:nth-child(2)) {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .photos :global(picture:nth-child(3)) {
+      grid-column: 2;
+      grid-row: 2;
+    }
   }
 
   .photos :global(picture) {
+    position: relative;
+    z-index: 1;
     display: block;
     overflow: hidden;
     border-radius: 3px;
