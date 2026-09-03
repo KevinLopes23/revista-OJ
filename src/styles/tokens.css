@@ -1,0 +1,104 @@
+/*
+ * Design tokens for Revista OJ — extracted directly from the source PDF
+ * (Affinity export): fonts read from embedded font names, colors sampled
+ * from the actual page pixels/vector fills. See source-material/README.md
+ * for how these were derived.
+ *
+ * Layered: primitive (raw values) -> semantic (what it's used for).
+ * Components should reference semantic tokens, not primitives, so a future
+ * palette tweak only touches this file.
+ */
+
+:root {
+  /* ---------- primitives: neutrals ---------- */
+  --p-cream: #fcf5e1;
+  --p-cream-soft: #f6e5b5;
+  --p-ink: #1d1d1b;
+  --p-white: #ffffff;
+  --p-gray: #5a5a5a;
+
+  /* ---------- primitives: mosaic accent palette ---------- */
+  /* azul (capa / história) */
+  --p-navy: #1e3b59;
+  --p-blue: #3b74b0;
+  --p-blue-light: #c1d5ea;
+  --p-sky: #6698cc;
+  /* dourado (história / ofício) */
+  --p-gold: #d3a218;
+  --p-bronze: #6b520c;
+  /* rosa / bordô (coleção tessalia) */
+  --p-burgundy: #641228;
+  --p-crimson: #c6254f;
+  --p-pink: #f2b9c8;
+  --p-pink-hot: #e36888;
+  /* laranja / pêssego (coleção tessalia) */
+  --p-orange: #f19736;
+  --p-peach: #fad7b1;
+  /* verde-oliva (contato) */
+  --p-olive: #cecf57;
+  --p-olive-pale: #edecbe;
+  /* amarelo (capa) */
+  --p-yellow: #fff300;
+
+  /* ---------- semantic: base ---------- */
+  --color-bg: var(--p-cream);
+  --color-surface: var(--p-white);
+  --color-text: var(--p-ink);
+  --color-text-muted: var(--p-gray);
+  --color-border: color-mix(in srgb, var(--p-ink) 12%, transparent);
+
+  /* ---------- semantic: per-chapter identity ----------
+     each editorial chapter borrows one duo from the mosaic strips that
+     open it in the print edition, the same way the magazine itself
+     re-colors its trencadís header art per section. */
+  --chapter-cover-a: var(--p-sky);
+  --chapter-cover-b: var(--p-yellow);
+
+  --chapter-history-a: var(--p-navy);
+  --chapter-history-b: var(--p-gold);
+  --chapter-history-bg: var(--p-blue-light);
+
+  --chapter-tessalia-a: var(--p-crimson);
+  --chapter-tessalia-b: var(--p-orange);
+  --chapter-tessalia-bg: var(--p-peach);
+
+  --chapter-craft-a: var(--p-bronze);
+  --chapter-craft-b: var(--p-gold);
+  --chapter-craft-bg: var(--p-cream-soft);
+
+  --chapter-interview-a: var(--p-pink-hot);
+  --chapter-interview-b: var(--p-burgundy);
+
+  --chapter-game-a: var(--p-blue);
+  --chapter-game-b: var(--p-crimson);
+  --chapter-game-c: var(--p-gold);
+  --chapter-game-d: var(--p-olive);
+
+  --chapter-contact-a: var(--p-olive);
+  --chapter-contact-b: var(--p-navy);
+
+  /* ---------- semantic: typography ----------
+     Bodoni Moda + Poppins are read verbatim from the PDF's embedded
+     fonts. The magazine's third face, a display font called "Seenonim"
+     used only for the TESSALIA wordmark, isn't a licensed web font we
+     can ship — --font-wordmark substitutes a heavy Poppins treatment
+     (wide tracking, condensed line-height) tuned to sit close to it. */
+  --font-display: "Bodoni Moda", "Iowan Old Style", Georgia, serif;
+  --font-body: "Poppins", "Segoe UI", system-ui, sans-serif;
+  --font-wordmark: "Poppins", system-ui, sans-serif;
+
+  /* fluid type scale */
+  --fs-body: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+  --fs-small: clamp(0.8125rem, 0.8rem + 0.1vw, 0.875rem);
+  --fs-kicker: clamp(0.9rem, 0.85rem + 0.2vw, 1.05rem);
+  --fs-h2: clamp(2.4rem, 1.9rem + 2.4vw, 4.2rem);
+  --fs-h3: clamp(1.6rem, 1.4rem + 1vw, 2.2rem);
+  --fs-wordmark: clamp(3rem, 2rem + 6vw, 7.5rem);
+  --fs-dropcap: clamp(3.5rem, 3rem + 2vw, 5.5rem);
+
+  /* ---------- layout ---------- */
+  --content-max: 74rem;
+  --measure: 38rem;
+  --space-section: clamp(4rem, 3rem + 5vw, 8rem);
+  --radius: 2px;
+}

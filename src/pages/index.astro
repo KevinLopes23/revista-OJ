@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+import HistorySection from "../components/HistorySection.astro";
+import CollectionSection from "../components/CollectionSection.astro";
+import PendantSection from "../components/PendantSection.astro";
+import CraftSection from "../components/CraftSection.astro";
+import InterviewSection from "../components/InterviewSection.astro";
+import ColoringGame from "../components/ColoringGame.astro";
+import ContactSection from "../components/ContactSection.astro";
+
+const title = "Revista OJ · Vol. 2 — Tessalia | Oficina das Joias";
+const description =
+  "A revista digital da Oficina das Joias: a coleção Tessalia, inspirada nos mosaicos de Barcelona, a história de por que usamos joias, o ofício da relojoaria e joalheria, e um mosaico para colorir online.";
+---
+
+<BaseLayout title={title} description={description}>
+  <Header />
+  <main id="conteudo">
+    <Hero />
+    <TableOfContents />
+    <HistorySection />
+    <CollectionSection />
+    <PendantSection />
+    <CraftSection />
+    <InterviewSection />
+    <ColoringGame />
+    <ContactSection />
+  </main>
+</BaseLayout>

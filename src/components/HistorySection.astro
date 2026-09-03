@@ -1,0 +1,359 @@
+---
+import { Image } from "astro:assets";
+import shells from "../assets/photos/history-shells.jpg";
+import necklaceLeaves from "../assets/photos/history-necklace-leaves.jpg";
+import necklaceEgypt from "../assets/photos/history-necklace-egypt.jpg";
+import egyptPainting from "../assets/photos/history-egypt-painting.jpg";
+import byzantineMosaic from "../assets/photos/history-mosaico-bizantino.jpg";
+import victorian from "../assets/photos/history-victorian.jpg";
+import jewelryBox from "../assets/photos/history-jewelry-box.jpg";
+import modelChain from "../assets/photos/history-model-chain.jpg";
+
+const rail = [
+  {
+    src: shells,
+    alt: "Conchas marinhas perfuradas escavadas no Marrocos, com marcas de pigmento",
+    caption: "Joias escavadas no Marrocos, com idades entre 142 mil e 150 mil anos (Foto: El Mehdi Sehasseh et.al/Science Advances)",
+    archival: true,
+  },
+  {
+    src: necklaceLeaves,
+    alt: "Colar de ouro com pingentes em formato de folha e contas de lápis-lazúli",
+    caption: "Adereço de cabeça, Suméria, c. 2600–2500 a.C. The Metropolitan Museum of Art, New York. Domínio público.",
+    archival: true,
+  },
+  {
+    src: necklaceEgypt,
+    alt: "Colar egípcio de ouro em formato de gola, com cabeças de falcão nas extremidades",
+    caption: "Colar de Senebtisi, Egito, Reino Médio, c. 1850–1775 a.C. The Metropolitan Museum of Art, New York. Domínio público.",
+    archival: true,
+  },
+  {
+    src: egyptPainting,
+    alt: "Pintura egípcia antiga retratando a rainha Nefertari jogando Senet",
+    caption: "Rainha Nefertari jogando Senet, Egito, c. 1290–1224 a.C. The Metropolitan Museum of Art, New York. Domínio público.",
+    archival: true,
+  },
+  {
+    src: byzantineMosaic,
+    alt: "Mosaico bizantino retratando a rainha Theodora e membros de sua corte, em vestes ricamente ornamentadas",
+    caption: "Rainha Theodora e os membros de sua corte, Império Bizantino, século VI. The Metropolitan Museum of Art, New York. Domínio público.",
+    archival: true,
+  },
+  {
+    src: victorian,
+    alt: "Colar vitoriano elaborado em ouro e pérolas, c. 1845",
+    caption: "Conjunto de joias, americano/europeu, c. 1900. The Metropolitan Museum of Art, New York. Domínio público.",
+    archival: true,
+  },
+  {
+    src: jewelryBox,
+    alt: "Conjunto de colar e brincos de pérolas em estojo de apresentação antigo",
+    caption: "Conjunto de joias em estojo original, c. 1900. The Metropolitan Museum of Art, New York. Domínio público.",
+    archival: true,
+  },
+  {
+    src: modelChain,
+    alt: "Modelo deitada usando camadas de correntes de ouro e brincos",
+    caption: "Correntes em camadas — coleção Tessalia, Oficina das Joias, 2026.",
+  },
+];
+---
+
+<section class="history" id="historia" aria-labelledby="history-heading">
+  <div class="container head">
+    <p class="kicker">Introdução</p>
+    <h2 id="history-heading" data-reveal>Por que usamos joias?</h2>
+    <p class="subtitle">A origem e a função dos nossos acessórios cotidianos</p>
+  </div>
+
+  <div class="container lede">
+    <p class="dropcap">
+      Usamos joias para marcar compromissos, celebrar conquistas, demonstrar afeto, recordar
+      alguém, encontrar uma identidade pessoal ou nos apresentarmos. Um anel pode representar um
+      vínculo, uma medalha pode revelar uma crença, um relógio herdado pode conservar os hábitos
+      de quem o utilizou, uma peça criada sob medida pode registrar um momento especial. Há
+      também quem escolha uma joia sem relação com qualquer cerimônia, simplesmente porque
+      reconhece nela uma forma de expressão pessoal.
+    </p>
+    <p>
+      Talvez seja essa a razão de continuarmos usando joias depois de tantos milênios. Os
+      materiais mudam, as técnicas se aperfeiçoam e os códigos sociais são constantemente
+      transformados, mas a necessidade humana de se envolver e expressar algo permanece igual.
+    </p>
+  </div>
+
+  <div class="container spread">
+    <div class="body">
+      <p>
+        Antes do ouro, do diamante e das técnicas de ourivesaria, existiram conchas, dentes,
+        ossos, pigmentos e garras de animais. As primeiras joias não foram criadas em palácios nem
+        destinadas a cerimônias de uma elite: elas surgiram em um período remoto da humanidade,
+        quando vestir o corpo humano passou a significar alguma coisa.
+      </p>
+      <p>
+        Na caverna de Bizmoune, no atual Marrocos, arqueólogos encontraram pequenas conchas
+        marinhas perfuradas, algumas com vestígios de pigmento vermelho, depositadas há pelo menos
+        142 mil anos — sendo consideradas as contas de concha mais antigas conhecidas até o
+        momento. O cuidado empregado em objetos tão pequenos revela uma mudança evolutiva: o ser
+        humano não produzia apenas aquilo que garantia sua sobrevivência imediata, mas produzia
+        também símbolos.
+      </p>
+      <p>
+        Uma concha transformada em conta não era útil para a sobrevivência humana, mas continha um
+        significado mais profundo para a nossa espécie; para os arqueólogos, o aparecimento
+        desses ornamentos está ligado ao desenvolvimento do pensamento simbólico e de formas
+        complexas de comunicação social. A joia começava a funcionar como uma linguagem sutil,
+        capaz de comunicar a identidade de alguém.
+      </p>
+      <p>
+        Com o surgimento das primeiras cidades, as joias ganharam novos materiais, técnicas e
+        funções. Na antiga Mesopotâmia, o ouro, a prata, o lápis-lazúli e a cornalina formavam
+        algumas peças e objetos cerimoniais de grande elaboração. Como muitas dessas
+        matérias-primas não existiam naturalmente no sul da Mesopotâmia, sua presença revelava
+        contatos com regiões distantes. Usar uma joia era, portanto, exibir não apenas beleza, mas
+        poder político e econômico.
+      </p>
+      <p>
+        No Egito antigo, a joia assumiu um papel ainda mais ligado à proteção e à continuidade da
+        vida. Amuletos eram usados por pessoas de diferentes posições sociais e podiam representar
+        animais, divindades, ou símbolos sagrados. Determinadas pedras, metais e figuras eram
+        escolhidos por suas propriedades simbólicas; <em>algumas peças acompanhavam seus
+        proprietários inclusive após a morte</em>. A joia era um elemento conjunto da
+        espiritualidade: ela transmitia proteção, saúde, força ou passagem segura para o mundo dos
+        mortos.
+      </p>
+      <p>
+        Ao longo da Antiguidade e dos séculos seguintes, adornar-se tornou-se também uma forma
+        pública de organizar a sociedade. Anéis, coroas, broches, medalhões, colares e insígnias
+        podiam informar posição política, função religiosa, estado civil, origem familiar ou
+        proximidade com o poder. Durante o Império Bizantino e a Idade Média, era comum essa forma
+        de hierarquia representada pelas joias e pela riqueza.
+      </p>
+      <p>
+        No século XIX, a industrialização alterou profundamente a produção e o acesso aos
+        adornos. Máquinas permitiram fabricar peças em maior escala, enquanto o crescimento das
+        cidades e de uma nova classe consumidora ampliou o mercado. A joia deixou de pertencer
+        apenas à aristocracia, embora continuasse sendo utilizada como marca de distinção. Ao
+        mesmo tempo, alguns movimentos artísticos reagiram à produção mecanizada e <em>defenderam
+        novamente a mão do artesão, o desenho individual e a importância do processo</em>.
+      </p>
+      <p>
+        Na virada para o século XX, a joalheria passou a dialogar de maneira mais direta com a
+        arte, a arquitetura, a moda e as transformações sociais. A partir da década de 1960,
+        artistas e designers ampliaram novamente seus limites, utilizando papel, plástico,
+        tecidos e outros elementos que questionavam a ideia de que uma joia precisava ser definida
+        apenas pela raridade ou pelo valor financeiro de sua matéria.
+      </p>
+
+      <p class="pull">Hoje, todas essas funções podem ser encontradas na joalheria.</p>
+      <p>
+        Usamos joias porque sentimentos, crenças, vínculos e lembranças também procuram um corpo.
+        E, desde as primeiras conchas perfuradas, encontramos nelas uma maneira de tornar essas
+        emoções visíveis.
+      </p>
+    </div>
+
+    <aside class="rail">
+      {
+        rail.map((item, i) => (
+          <figure class="rail-item" data-reveal>
+            <span class:list={["rail-frame", { archival: item.archival }]}>
+              <Image
+                src={item.src}
+                alt={item.alt}
+                widths={[420, 700, 1000]}
+                sizes="(min-width: 64rem) 28vw, 90vw"
+                loading={i < 2 ? "eager" : "lazy"}
+              />
+              {item.archival && <span class="archival-tag">Acervo</span>}
+            </span>
+            <figcaption>{item.caption}</figcaption>
+          </figure>
+        ))
+      }
+    </aside>
+  </div>
+</section>
+
+<style>
+  .history {
+    background: var(--chapter-history-bg);
+    padding-block: var(--space-section);
+  }
+
+  .head {
+    max-width: 46rem;
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-style: italic;
+    font-size: var(--fs-h2);
+    color: var(--chapter-history-a);
+  }
+
+  .subtitle {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.05rem, 1rem + 0.4vw, 1.35rem);
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+  }
+
+  .lede {
+    columns: 1;
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  @media (min-width: 50rem) {
+    .lede {
+      columns: 2;
+      column-gap: 2.5rem;
+      max-width: var(--content-max);
+    }
+  }
+
+  .dropcap::first-letter {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--fs-dropcap);
+    float: left;
+    line-height: 0.8;
+    padding-right: 0.12em;
+    color: var(--chapter-history-a);
+  }
+
+  .spread {
+    display: grid;
+    gap: clamp(2.5rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  @media (min-width: 64rem) {
+    .spread {
+      grid-template-columns: 1.3fr 1fr;
+    }
+  }
+
+  .body {
+    max-width: 40rem;
+  }
+
+  .body p {
+    margin-bottom: 1.3em;
+  }
+
+  .body em {
+    font-family: var(--font-display);
+    font-style: italic;
+  }
+
+  .pull {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.3rem, 1.15rem + 0.8vw, 1.8rem);
+    color: var(--chapter-history-a);
+    line-height: 1.3;
+    background: color-mix(in srgb, var(--chapter-history-a) 8%, transparent);
+    border-left: 3px solid var(--chapter-history-a);
+    border-radius: 0 4px 4px 0;
+    padding: 0.85em 1.1em;
+  }
+
+  .rail {
+    display: grid;
+    gap: 1.75rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 30rem) and (max-width: 63.99rem) {
+    .rail {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .rail {
+      grid-template-columns: 1fr;
+      position: sticky;
+      top: 5.5rem;
+      align-self: start;
+      max-height: calc(100svh - 7rem);
+      overflow-y: auto;
+      padding-right: 0.25rem;
+      scrollbar-width: thin;
+    }
+  }
+
+  .rail-item {
+    margin: 0;
+  }
+
+  .rail-frame {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 14px 30px -18px rgba(30, 24, 10, 0.4);
+  }
+
+  .rail-frame :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition:
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.6s ease;
+  }
+
+  /* archival pieces (museum scans, centuries-old photography) read as
+     "material de acervo" rather than the collection's own vibrant
+     photography — a quiet sepia treatment tells them apart at a glance */
+  .rail-frame.archival :global(img) {
+    filter: sepia(0.35) saturate(0.75) contrast(0.96);
+  }
+
+  .rail-item:hover .rail-frame.archival :global(img) {
+    filter: sepia(0.1) saturate(0.95) contrast(1);
+  }
+
+  .archival-tag {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    background: color-mix(in srgb, var(--p-ink) 65%, transparent);
+    color: var(--p-cream);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.25em 0.6em;
+    border-radius: 999px;
+  }
+
+  .rail-item:hover .rail-frame :global(img) {
+    transform: scale(1.06);
+  }
+
+  .rail-item figcaption {
+    font-size: 0.72rem;
+    line-height: 1.4;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+
+  .rail-item:nth-child(1) {
+    transition-delay: 0ms;
+  }
+  .rail-item:nth-child(2) {
+    transition-delay: 80ms;
+  }
+  .rail-item:nth-child(3) {
+    transition-delay: 160ms;
+  }
+  .rail-item:nth-child(n + 4) {
+    transition-delay: 240ms;
+  }
+</style>

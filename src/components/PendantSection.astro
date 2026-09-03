@@ -1,0 +1,171 @@
+---
+import { Image } from "astro:assets";
+import pendant1 from "../assets/photos/trencadis-pingente-1.jpg";
+import pendant2 from "../assets/photos/trencadis-pingente-2.jpg";
+import SectionDivider from "./SectionDivider.astro";
+---
+
+<section class="pendant" id="peca-autoral" aria-labelledby="pendant-heading">
+  <div class="container grid">
+    <div class="photos" data-reveal>
+      <div class="motif" aria-hidden="true"><SectionDivider variant="pink" /></div>
+      <span class="frame frame-a">
+        <Image src={pendant1} alt="Pingente autoral Trencadís em prata com zircônias coloridas, sobre laranja" widths={[480, 800, 1100]} sizes="(min-width: 55rem) 26rem, 60vw" />
+      </span>
+      <span class="frame frame-b">
+        <Image src={pendant2} alt="Pingente Trencadís visto de perto, mostrando as pedras coloridas encravadas" widths={[480, 800, 1100]} sizes="(min-width: 55rem) 26rem, 60vw" />
+      </span>
+    </div>
+
+    <div class="text">
+      <p class="kicker">Trencadís: tudo se torna inspiração</p>
+      <h2 id="pendant-heading" data-reveal>Peça Autoral<span class="serif-sub">Trencadís</span></h2>
+
+      <div class="body measure">
+        <p class="dropcap">
+          Para Tessalia, criamos um pingente autoral em <strong>prata 950</strong>, pensado desde
+          o início a partir da imagem dos mosaicos que inspiraram a coleção. O desenho foge de uma
+          composição perfeitamente simétrica: a estrutura de prata cria pequenos espaços de
+          tamanhos diferentes, preenchidos por zircônias coloridas em vários formatos e
+          lapidações.
+        </p>
+        <p>
+          As pedras foram escolhidas justamente para não parecerem todas iguais. Tons de azul,
+          verde, amarelo, rosa, roxo e vermelho se encontram em uma composição que lembra os
+          fragmentos de cerâmica de um mosaico, seguindo a linha do abstrato. A intenção foi
+          transformar essa referência em uma joia de verdade, com cor, brilho e pequenas
+          irregularidades.
+        </p>
+        <p>
+          É a peça que traduz de forma mais direta a origem de Tessalia e também registra uma
+          parte importante do processo criativo desta coleção: sair de uma referência artística e
+          desenvolvê-la até chegar a um desenho próprio da Oficina das Joias.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pendant {
+    background: var(--chapter-tessalia-bg);
+    padding-block: var(--space-section);
+  }
+
+  .grid {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  @media (min-width: 55rem) {
+    .grid {
+      grid-template-columns: 1fr 1.1fr;
+    }
+  }
+
+  .photos {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    padding: 2rem 1rem 3rem;
+  }
+
+  .motif {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+    transform: scale(1.9) rotate(-4deg);
+  }
+
+  .frame {
+    position: relative;
+    z-index: 1;
+    display: block;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 20px 40px -20px rgba(100, 18, 40, 0.45);
+  }
+
+  .frame :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 3 / 4;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .frame:hover :global(img) {
+    transform: scale(1.06);
+  }
+
+  .frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.55) 50%, transparent 58%);
+    background-size: 250% 250%;
+    background-position: -40% -40%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .frame:hover::after {
+    opacity: 1;
+    animation: shine-sweep 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes shine-sweep {
+    from {
+      background-position: -40% -40%;
+    }
+    to {
+      background-position: 140% 140%;
+    }
+  }
+
+  .frame-a {
+    transform: translateY(1.5rem);
+  }
+
+  .frame-b {
+    transform: translateY(-1rem);
+  }
+
+  h2 {
+    font-style: italic;
+    font-size: var(--fs-h2);
+    color: var(--chapter-tessalia-a);
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    margin: 0.4em 0 1em;
+  }
+
+  .serif-sub {
+    font-size: 0.42em;
+    margin-top: 0.3em;
+  }
+
+  .body p {
+    margin-bottom: 1.2em;
+  }
+
+  .dropcap::first-letter {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--fs-dropcap);
+    float: left;
+    line-height: 0.8;
+    padding-right: 0.12em;
+    color: var(--chapter-tessalia-a);
+  }
+</style>

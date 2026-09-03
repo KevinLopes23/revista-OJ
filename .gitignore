@@ -1,0 +1,34 @@
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
+
+# raw source PDFs + unprocessed extraction (too large for GitHub's 100MB/file
+# limit and not needed at build/deploy time — optimized assets live in
+# src/assets/photos and src/assets/game instead). Keep these locally or in
+# shared drive; do not commit.
+source-material/
+
+# generated web-optimized images (produced by scripts/process-images.py,
+# safe to regenerate — see source-material/README.md)
+

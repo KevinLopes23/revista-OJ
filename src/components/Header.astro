@@ -1,0 +1,135 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/game/oj-logo.jpg";
+
+const links = [
+  { href: "#sumario", label: "Sumário" },
+  { href: "#historia", label: "História" },
+  { href: "#tessalia", label: "Coleção" },
+  { href: "#oficina", label: "A Oficina" },
+  { href: "#entrevista", label: "Entrevista" },
+  { href: "#pinte", label: "Pinte o mosaico" },
+  { href: "#contato", label: "Contato" },
+];
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href="#topo">
+      <Image src={logo} alt="Oficina das Joias" width={40} height={40} class="brand-mark" />
+      <span class="brand-name">Revista OJ</span>
+    </a>
+
+    <details class="menu">
+      <summary aria-label="Abrir menu de seções">Menu</summary>
+      <nav aria-label="Seções da revista">
+        <ul>
+          {
+            links.map((l) => (
+              <li>
+                <a href={l.href}>{l.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 0.85rem;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .brand-mark {
+    border-radius: 50%;
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .brand-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.15rem;
+  }
+
+  .menu {
+    position: relative;
+  }
+
+  .menu summary {
+    list-style: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--fs-small);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.5em 1em;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+  }
+
+  .menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .menu[open] summary {
+    background: var(--p-ink);
+    color: var(--p-cream);
+  }
+
+  .menu nav {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.5rem);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.25);
+    padding: 0.5rem;
+    min-width: 12rem;
+  }
+
+  .menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+  }
+
+  .menu a {
+    display: block;
+    padding: 0.55em 0.75em;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: var(--fs-small);
+  }
+
+  .menu a:hover,
+  .menu a:focus-visible {
+    background: var(--p-cream-soft);
+  }
+</style>

@@ -1,0 +1,37 @@
+---
+import { Image } from "astro:assets";
+import stripBlue from "../assets/photos/strip-blue.png";
+import stripPink from "../assets/photos/strip-pink.jpg";
+import stripGreen from "../assets/photos/strip-green.jpg";
+
+interface Props {
+  variant?: "blue" | "pink" | "green";
+  flip?: boolean;
+}
+
+const { variant = "blue", flip = false } = Astro.props;
+const strips = { blue: stripBlue, pink: stripPink, green: stripGreen };
+const img = strips[variant];
+---
+
+<div class:list={["divider", { flip }]} role="presentation" aria-hidden="true">
+  <Image src={img} alt="" width={933} height={img.height} loading="lazy" />
+</div>
+
+<style>
+  .divider {
+    width: 100%;
+    max-width: 28rem;
+    margin-inline: auto;
+    opacity: 0.95;
+  }
+
+  .divider :global(img) {
+    width: 100%;
+    height: auto;
+  }
+
+  .divider.flip {
+    transform: scaleX(-1);
+  }
+</style>

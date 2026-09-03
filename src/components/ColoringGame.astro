@@ -1,0 +1,275 @@
+---
+const swatches = [
+  { name: "Azul-marinho", varName: "--p-navy" },
+  { name: "Azul", varName: "--p-blue" },
+  { name: "Céu", varName: "--p-sky" },
+  { name: "Azul-claro", varName: "--p-blue-light" },
+  { name: "Dourado", varName: "--p-gold" },
+  { name: "Bronze", varName: "--p-bronze" },
+  { name: "Carmim", varName: "--p-crimson" },
+  { name: "Bordô", varName: "--p-burgundy" },
+  { name: "Rosa", varName: "--p-pink" },
+  { name: "Rosa-choque", varName: "--p-pink-hot" },
+  { name: "Laranja", varName: "--p-orange" },
+  { name: "Pêssego", varName: "--p-peach" },
+  { name: "Verde-oliva", varName: "--p-olive" },
+  { name: "Tinta", varName: "--p-ink" },
+];
+---
+
+<section class="game" id="pinte" aria-labelledby="game-heading">
+  <div class="container">
+    <p class="kicker">O cartão da edição, em versão digital</p>
+    <h2 id="game-heading" data-reveal>Pinte o mosaico</h2>
+    <p class="subtitle measure">
+      Cada revista impressa vem com um cartão de mosaico para colorir. Aqui está a mesma peça, em
+      versão digital: escolha uma cor e toque em qualquer área para pintar.
+    </p>
+
+    <div class="game-root" data-game data-lineart="/game/mosaic-lineart.png">
+      <div class="canvas-wrap">
+        <canvas data-canvas width="1182" height="1182" role="img" aria-label="Mosaico para colorir em formato de vitral, com um anel de noivado, flores e folhas"></canvas>
+      </div>
+
+      <div class="controls">
+        <fieldset>
+          <legend>Cores</legend>
+          <div class="swatches">
+            {
+              swatches.map((s) => (
+                <button
+                  type="button"
+                  data-swatch
+                  data-name={s.name}
+                  aria-pressed="false"
+                  aria-label={s.name}
+                />
+              ))
+            }
+          </div>
+          <label class="custom-color">
+            <span>Outra cor</span>
+            <input type="color" data-custom-color value="#3b74b0" />
+          </label>
+        </fieldset>
+
+        <div class="actions">
+          <button type="button" data-undo>Desfazer</button>
+          <button type="button" data-reset>Reiniciar</button>
+          <button type="button" data-download class="primary">Baixar minha pintura</button>
+        </div>
+
+        <p class="status" data-status role="status" aria-live="polite">Carregando o mosaico…</p>
+      </div>
+    </div>
+
+    <noscript>
+      <p class="noscript-note">
+        Este jogo precisa de JavaScript para funcionar. O desenho do mosaico continua disponível
+        para impressão junto com a revista física.
+      </p>
+    </noscript>
+  </div>
+</section>
+
+<script>
+  import { initColoringGame } from "../scripts/coloring-game";
+
+  const root = document.querySelector<HTMLElement>("[data-game]");
+  if (root) initColoringGame(root);
+</script>
+
+<style>
+  .game {
+    background: var(--p-cream-soft);
+    padding-block: var(--space-section);
+  }
+
+  .kicker {
+    color: var(--chapter-game-b);
+  }
+
+  h2 {
+    font-style: italic;
+    font-size: var(--fs-h2);
+    color: var(--p-ink);
+    margin: 0.3em 0 0.6em;
+  }
+
+  .subtitle {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.05rem, 1rem + 0.4vw, 1.4rem);
+    color: var(--color-text-muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .game-root {
+    display: grid;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  @media (min-width: 60rem) {
+    .game-root {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+
+  .canvas-wrap {
+    background: var(--p-white);
+    border-radius: 8px;
+    padding: clamp(0.5rem, 2vw, 1.25rem);
+    box-shadow: 0 20px 50px -25px rgba(0, 0, 0, 0.35);
+  }
+
+  canvas {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    cursor: crosshair;
+    border-radius: 4px;
+    touch-action: manipulation;
+  }
+
+  .controls {
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+  }
+
+  fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  legend {
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: var(--fs-small);
+    padding: 0;
+    margin-bottom: 0.75rem;
+  }
+
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    max-width: 22rem;
+  }
+
+  .swatches button {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid var(--color-border);
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .swatches button[aria-pressed="true"] {
+    outline: 3px solid var(--p-ink);
+    outline-offset: 2px;
+  }
+
+  /* one rule per swatch, in the same order as the `swatches` array above —
+     kept as static nth-child CSS (rather than an inline style="" per
+     button) so the page's CSP can run with a strict style-src and no
+     'unsafe-inline' */
+  .swatches button:nth-child(1) {
+    background: var(--p-navy);
+  }
+  .swatches button:nth-child(2) {
+    background: var(--p-blue);
+  }
+  .swatches button:nth-child(3) {
+    background: var(--p-sky);
+  }
+  .swatches button:nth-child(4) {
+    background: var(--p-blue-light);
+  }
+  .swatches button:nth-child(5) {
+    background: var(--p-gold);
+  }
+  .swatches button:nth-child(6) {
+    background: var(--p-bronze);
+  }
+  .swatches button:nth-child(7) {
+    background: var(--p-crimson);
+  }
+  .swatches button:nth-child(8) {
+    background: var(--p-burgundy);
+  }
+  .swatches button:nth-child(9) {
+    background: var(--p-pink);
+  }
+  .swatches button:nth-child(10) {
+    background: var(--p-pink-hot);
+  }
+  .swatches button:nth-child(11) {
+    background: var(--p-orange);
+  }
+  .swatches button:nth-child(12) {
+    background: var(--p-peach);
+  }
+  .swatches button:nth-child(13) {
+    background: var(--p-olive);
+  }
+  .swatches button:nth-child(14) {
+    background: var(--p-ink);
+  }
+
+  .custom-color {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    font-size: var(--fs-small);
+  }
+
+  .custom-color input {
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 2px solid var(--color-border);
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .actions button {
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    font-weight: 600;
+    padding: 0.75em 1.25em;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--p-white);
+    cursor: pointer;
+  }
+
+  .actions button.primary {
+    background: var(--p-ink);
+    color: var(--p-cream);
+    border-color: var(--p-ink);
+  }
+
+  .status {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+    min-height: 1.5em;
+    margin: 0;
+  }
+
+  .noscript-note {
+    margin-top: 1.5rem;
+    color: var(--color-text-muted);
+  }
+</style>

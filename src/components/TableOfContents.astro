@@ -1,0 +1,82 @@
+---
+import SectionDivider from "./SectionDivider.astro";
+
+const items = [
+  { href: "#historia", title: "Por que usamos joias?", desc: "Um mergulho na história da joalheria, buscando entender as intenções humanas desde a antiguidade." },
+  { href: "#tessalia", title: "Tessalia, arte em fragmentos", desc: "Pesquisas, desenvolvimento e a arte envolvida na elaborada coleção primavera/verão 2026 OJ." },
+  { href: "#peca-autoral", title: "Trencadís, um pingente autoral", desc: "A criação do pingente autoral que traduz em formas e cores a inspiração dos mosaicos de Tessalia." },
+  { href: "#oficina", title: "A Oficina das Joias", desc: "A dedicação e qualidade da tradição de mais de 70 anos, unidas à inovação e tecnologia." },
+  { href: "#entrevista", title: "Entrevista com Elaine", desc: "Sobre a sua trajetória na OJ." },
+  { href: "#pinte", title: "Pinte o mosaico", desc: "Uma versão digital do cartão de colorir que acompanha esta edição." },
+];
+---
+
+<section class="toc" id="sumario" aria-labelledby="toc-heading">
+  <SectionDivider variant="blue" />
+  <div class="container">
+    <h2 id="toc-heading" data-reveal>Sumário</h2>
+    <ol>
+      {
+        items.map((item) => (
+          <li>
+            <a href={item.href}>
+              <span class="title">{item.title}</span>
+              <span class="desc">{item.desc}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+  <SectionDivider variant="pink" flip />
+</section>
+
+<style>
+  .toc .container {
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+    max-width: 46rem;
+  }
+
+  h2 {
+    font-style: italic;
+    font-size: var(--fs-h2);
+    margin-bottom: 1.5em;
+  }
+
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  li {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.25rem;
+  }
+
+  a {
+    text-decoration: none;
+    display: grid;
+    gap: 0.3rem;
+  }
+
+  .title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.5rem);
+  }
+
+  a:hover .title,
+  a:focus-visible .title {
+    color: var(--p-crimson);
+  }
+
+  .desc {
+    color: var(--color-text-muted);
+    font-size: var(--fs-small);
+    max-width: 34rem;
+  }
+</style>

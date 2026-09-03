@@ -1,0 +1,139 @@
+---
+import { Image } from "astro:assets";
+import cover from "../assets/photos/cover-hero.jpg";
+import SectionDivider from "./SectionDivider.astro";
+---
+
+<section class="hero" id="topo">
+  <Image
+    src={cover}
+    alt="Modelo sorrindo ao ar livre, usando peças da coleção Tessalia da Oficina das Joias"
+    widths={[640, 960, 1400, 2000, 2600]}
+    sizes="100vw"
+    class="hero-img"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <div class="hero-scrim" aria-hidden="true"></div>
+
+  <div class="hero-content container">
+    <div class="hero-motif" aria-hidden="true"><SectionDivider variant="pink" /></div>
+    <p class="hero-eyebrow">Revista OJ · Vol. 2 · Set 2026</p>
+    <h1 class="wordmark">Tessalia</h1>
+    <p class="hero-sub">Oficina das Joias</p>
+  </div>
+
+  <a class="scroll-cue" href="#sumario" aria-label="Rolar para o sumário">
+    <span></span>
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    align-items: end;
+    isolation: isolate;
+    color: var(--p-white);
+  }
+
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20, 32, 46, 0.15) 0%, rgba(20, 32, 46, 0.05) 45%, rgba(15, 24, 36, 0.75) 100%);
+    z-index: -1;
+  }
+
+  .hero-content {
+    padding-block: clamp(2.5rem, 8vh, 5rem);
+  }
+
+  .hero-motif {
+    width: clamp(4.5rem, 3.5rem + 4vw, 7rem);
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.35));
+  }
+
+  .hero-eyebrow {
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: var(--fs-small);
+    margin: 0 0 0.75rem;
+    opacity: 0.92;
+  }
+
+  .wordmark {
+    font-family: var(--font-wordmark);
+    font-weight: 800;
+    font-size: var(--fs-wordmark);
+    line-height: 0.9;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: var(--p-yellow);
+    margin: 0;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .hero-sub {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.1rem, 1rem + 1vw, 1.6rem);
+    margin: 0.25rem 0 0;
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1.6rem;
+    height: 2.6rem;
+    border: 2px solid var(--p-white);
+    border-radius: 999px;
+    display: block;
+  }
+
+  .scroll-cue span {
+    position: absolute;
+    top: 0.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0.3rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: var(--p-white);
+    animation: scroll-cue 1.8s ease-in-out infinite;
+  }
+
+  @keyframes scroll-cue {
+    0% {
+      opacity: 1;
+      top: 0.4rem;
+    }
+    70% {
+      opacity: 0;
+      top: 1.2rem;
+    }
+    100% {
+      opacity: 0;
+      top: 0.4rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-cue span {
+      animation: none;
+    }
+  }
+</style>

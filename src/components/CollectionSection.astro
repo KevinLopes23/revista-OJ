@@ -1,0 +1,571 @@
+---
+import { Image } from "astro:assets";
+import portrait from "../assets/photos/tessalia-portrait.jpg";
+import pearls from "../assets/photos/tessalia-pearls.jpg";
+import guell from "../assets/photos/guell-barcelona.jpg";
+import fence from "../assets/photos/ensaio-fence.jpg";
+import picnic from "../assets/photos/ensaio-picnic.jpg";
+import brincos from "../assets/photos/produto-brincos-azul.jpg";
+import aneis from "../assets/photos/produto-aneis-rosa.jpg";
+import pingenteMadreperola from "../assets/photos/produto-pingente-madreperola.jpg";
+import colarRubi from "../assets/photos/produto-colar-rubi.jpg";
+import SectionDivider from "./SectionDivider.astro";
+
+// ensaio fotográfico — fotos de lifestyle ao ar livre
+import piqueniqueLeitura from "../assets/photos/ensaio-piquenique-leitura.jpg";
+import piqueniqueFrutas from "../assets/photos/ensaio-piquenique-frutas.jpg";
+import flores from "../assets/photos/ensaio-flores.jpg";
+import piqueniqueGrama from "../assets/photos/ensaio-piquenique-grama.jpg";
+import cereja from "../assets/photos/ensaio-cereja.jpg";
+import piscina from "../assets/photos/ensaio-piscina.jpg";
+import limao from "../assets/photos/ensaio-limao.jpg";
+import viseira from "../assets/photos/ensaio-viseira.jpg";
+import oculosSorriso from "../assets/photos/ensaio-oculos-sorriso.jpg";
+import regataBranca from "../assets/photos/ensaio-regata-branca.jpg";
+import tenis from "../assets/photos/ensaio-tenis.jpg";
+import vestidoVento from "../assets/photos/ensaio-vestido-vento.jpg";
+import perfilBrinco from "../assets/photos/ensaio-perfil-brinco.jpg";
+
+// still de produto sobre fundo colorido — bloco "mosaico"
+import aliancas from "../assets/photos/produto-aliancas.jpg";
+import colarMacro from "../assets/photos/produto-colar-macro.jpg";
+import pingenteCoracao from "../assets/photos/produto-pingente-coracao.jpg";
+import brincosPerola from "../assets/photos/produto-brincos-perola.jpg";
+import colarPerolas from "../assets/photos/produto-colar-perolas.jpg";
+import pulseiraCouro from "../assets/photos/produto-pulseira-couro.jpg";
+import conjuntoAzul from "../assets/photos/produto-conjunto-azul.jpg";
+import aneisCristal from "../assets/photos/produto-aneis-cristal.jpg";
+import brincosGota from "../assets/photos/produto-brincos-gota.jpg";
+import anelDetalhe from "../assets/photos/produto-anel-detalhe.jpg";
+import brincosMint from "../assets/photos/produto-brincos-mint.jpg";
+import colaresColoridos from "../assets/photos/produto-colares-coloridos.jpg";
+import brincosDrusa from "../assets/photos/produto-brincos-drusa.jpg";
+import pulseirasConjunto from "../assets/photos/produto-pulseiras-conjunto.jpg";
+
+const gallery = [
+  { src: fence, alt: "Modelo apoiada em uma cerca de madeira, luz do fim de tarde", tall: true },
+  { src: piqueniqueLeitura, alt: "Modelo deitada em um piquenique, folheando uma revista", wide: true },
+  { src: portrait, alt: "Modelo fotografando com uma câmera instantânea, usando brincos e anéis com pedras coloridas" },
+  { src: aliancas, alt: "Modelo ao ar livre segurando um buquê de flores, vestido azul claro", wide: true },
+  {
+    type: "caption",
+    text: "Peças que acompanham o corpo em movimento — no piquenique, na trilha, no dia comum.",
+  },
+  { src: piqueniqueFrutas, alt: "Piquenique com frutas, limões e velas decorativas sobre a toalha", tall: true },
+  { src: colarMacro, alt: "Modelo com vestido de cetim rosa e colar de pingente" },
+  { src: picnic, alt: "Cena de piquenique ao ar livre com frutas e joias" },
+  { src: piqueniqueGrama, alt: "Modelo sentada na grama ao lado de um piquenique, vestido branco" },
+  { src: cereja, alt: "Modelo comendo uma cereja, brincos dourados em destaque" },
+  { src: piscina, alt: "Modelo sentada à beira da piscina, ao ar livre", wide: true },
+  { src: limao, alt: "Modelo ao ar livre segurando uma fatia de limão junto ao rosto", tall: true },
+  { src: viseira, alt: "Modelo usando viseira espelhada e colar, luz forte de verão", tall: true },
+  {
+    type: "caption",
+    text: "Tons de azul, verde, amarelo, rosa, roxo e vermelho — como os fragmentos de um mosaico.",
+  },
+  { src: oculosSorriso, alt: "Modelo sorrindo ao ar livre, usando óculos de sol e colar", tall: true },
+  { src: pearls, alt: "Colares de pérolas em camadas sobre o colo" },
+  { src: regataBranca, alt: "Modelo com regata branca e colar dourado, ao ar livre", wide: true },
+  { src: tenis, alt: "Modelo jogando tênis ao ar livre, usando joias da coleção", tall: true },
+  { src: vestidoVento, alt: "Modelo caminhando com vestido azul ao vento", tall: true },
+  { src: perfilBrinco, alt: "Perfil de modelo sorrindo, brinco em destaque contra o céu", wide: true },
+];
+
+const mosaic = [
+  { src: brincos, alt: "Brincos e anéis dourados com pedras azuis, still sobre fundo azul" },
+  { src: aneis, alt: "Anéis com pedras rosa e roxa sobre fundo rosa" },
+  { src: pingenteMadreperola, alt: "Pingente de madrepérola em formato irregular, lembrando um mosaico" },
+  { src: colarRubi, alt: "Colar com pedras vermelhas sobre fundo rosa" },
+  { src: flores, alt: "Detalhe macro de colar com pedras turquesa sobre tecido lilás" },
+  { src: pingenteCoracao, alt: "Colar e brincos com pingentes em formato de coração, sobre fundo rosa" },
+  { src: brincosPerola, alt: "Brincos e anel com pérolas, still sobre fundo amarelo" },
+  { src: colarPerolas, alt: "Colar de pérolas e anéis, still sobre fundo azul" },
+  { src: pulseiraCouro, alt: "Pulseira de couro com fecho dourado no pulso" },
+  { src: conjuntoAzul, alt: "Brincos e anel de madrepérola em formato de gota, still sobre fundo amarelo" },
+  { src: aneisCristal, alt: "Brincos e anéis com cristais rosa, still sobre fundo rosa" },
+  { src: brincosGota, alt: "Colares finos coloridos sobrepostos, still sobre o pulso" },
+  { src: anelDetalhe, alt: "Detalhe de anel com pedra verde-água sobre folhagem" },
+  { src: brincosMint, alt: "Brincos e anéis com pedras verde-menta, still sobre fundo azul" },
+  { src: colaresColoridos, alt: "Colares de contas coloridas, still sobre fundo rosa" },
+  { src: brincosDrusa, alt: "Brincos de drusa roxa e laranja, still sobre fundo amarelo" },
+  { src: pulseirasConjunto, alt: "Conjunto de pulseiras finas sobrepostas no pulso" },
+];
+---
+
+<section class="collection" id="tessalia" aria-labelledby="collection-heading">
+  <SectionDivider variant="pink" />
+
+  <div class="intro container">
+    <p class="kicker">Coleção Primavera/Verão 2026 · Oficina das Joias</p>
+    <h2 id="collection-heading" class="wordmark" data-reveal>Tessalia</h2>
+    <p class="subtitle measure">Primavera e Verão — as estações que devolvem cor e leveza ao cotidiano.</p>
+  </div>
+
+  <div class="container body-grid">
+    <div class="body measure">
+      <p class="dropcap">
+        Na primavera e no verão, as joias participam da forma de vestir de uma maneira diferente.
+        Tecidos mais leves deixam o corpo mais visível, as cores aparecem com maior liberdade e um
+        colar, um brinco ou uma combinação de anéis pode mudar completamente uma produção simples.
+        Foi observando essa relação cotidiana com os acessórios e acompanhando as novas coleções
+        de grandes casas que começamos a definir a Primavera/Verão 2026 da Oficina das Joias.
+      </p>
+      <p>
+        Durante a pesquisa, encontramos um interesse crescente por peças coloridas, materiais de
+        aparência natural e composições menos rígidas. Flores, pedras de diferentes tonalidades,
+        contas, pérolas barrocas e formatos irregulares aparecem junto com colares longos, cordões
+        e pingentes de maior destaque.
+      </p>
+      <p>
+        Não pretendíamos, porém, reunir tudo o que aparecia nas pesquisas nem desenvolver peças
+        apenas porque determinado formato estava em alta. Era necessário encontrar uma referência
+        que tivesse relação com a Oficina das Joias e que permitisse trabalhar essas informações
+        de maneira própria. Essa direção tornou-se mais clara a partir de uma lembrança da viagem
+        de Elaine e Paulo à Barcelona e de sua visita ao Park Güell.
+      </p>
+
+      <div class="teaser">
+        <figure>
+          <Image src={portrait} alt="Modelo fotografando com uma câmera instantânea, usando brincos e anéis com pedras coloridas" widths={[420, 700, 1000]} sizes="(min-width: 64rem) 30rem, 92vw" />
+          <figcaption>Um primeiro olhar sobre Tessalia.</figcaption>
+        </figure>
+        <figure>
+          <Image src={pearls} alt="Colares de pérolas em camadas sobre o colo" widths={[420, 700, 1000]} sizes="(min-width: 64rem) 30rem, 92vw" />
+          <figcaption>Pérolas em camadas — um dos temas da coleção.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <aside class="guell-box">
+      <figure class="figure">
+        <Image src={guell} alt="Vista do Parque Güell em Barcelona, com bancos de mosaico colorido e a cidade ao fundo" widths={[480, 900, 1400]} sizes="(min-width: 60rem) 26rem, 92vw" />
+        <figcaption>Vista do Parque Güell no inverno. Barcelona. Por: @bearfotos em Magnific.</figcaption>
+      </figure>
+      <p>
+        Projetado por Antoni Gaudí a partir de 1900, o parque apresenta uma arquitetura que
+        acompanha o relevo, incorpora formas encontradas na natureza e combina estruturas curvas
+        com superfícies intensamente coloridas. Entre seus elementos mais conhecidos estão os
+        mosaicos feitos com fragmentos irregulares, técnica chamada <em>trencadís</em>, utilizada
+        em bancos, esculturas e detalhes arquitetônicos.
+      </p>
+    </aside>
+
+    <div class="body measure">
+      <p>
+        O que chamou a atenção nessa visita não foi somente a quantidade de cores, mas sim a forma
+        como elas foram organizadas. Os fragmentos têm tamanhos, desenhos e tonalidades
+        diferentes, as curvas acompanham o terreno e as construções não tentam se separar da
+        paisagem. Mesmo com tanta variedade, o conjunto não parece confuso; há equilíbrio porque
+        cada parte foi escolhida e colocada em relação às demais.
+      </p>
+      <p>
+        Essa observação aproximou o mosaico daquilo que buscávamos para a coleção. A primavera e o
+        verão também são formados por contrastes: flores de espécies diferentes convivem em um
+        mesmo jardim, folhas não crescem com medidas idênticas e as cores mudam conforme a luz, o
+        horário e a estação. <em>A beleza não depende de uma regularidade absoluta, mas da maneira
+        como essas diferenças se encontram.</em>
+      </p>
+      <p>
+        O nome TESSALIA foi criado a partir da palavra <em>tessela</em>, que designa cada pequeno
+        cubo ou peça utilizada na composição de um mosaico. Uma tessela pode ser feita de pedra,
+        cerâmica, vidro ou outros materiais e possui cor e formato próprios, mas só revela sua
+        função completa quando passa a integrar o desenho ao redor.
+      </p>
+      <p>
+        Na nova coleção da Oficina das Joias, essa referência não aparece como uma reprodução
+        direta da obra de Gaudí. As joias não imitam as construções ou os desenhos do Park Güell;
+        buscamos trazer um mosaico de peças: pedras coloridas ocupam o lugar das tesselas, pérolas
+        irregulares quebram a repetição perfeita e criam variações de brilho e profundidade. Em
+        algumas peças, o metal delimita pequenos espaços e organiza as cores; em outras, as pedras
+        e as pérolas aparecem de maneira mais livre, preservando diferenças de tamanho, contorno e
+        textura.
+      </p>
+      <p>
+        Os colares longos com pingentes têm uma participação importante em Tessalia. Além de
+        acompanharem uma direção forte da temporada, eles oferecem espaço para desenvolver peças
+        maiores, nas quais cores, pedras e diferentes acabamentos podem ser observados com mais
+        clareza. O comprimento permite que o pingente seja usado tanto sobre tecidos leves quanto
+        em sobreposições, enquanto sua construção concentra parte importante do trabalho artístico
+        da coleção.
+      </p>
+      <p>
+        Essa liberdade de combinação também permite aproximar materiais que nem sempre seriam
+        utilizados da mesma maneira. Pedras naturais, pérolas, metais e acabamentos de aparência
+        manual podem coexistir sem que todas as peças precisem repetir o mesmo desenho. O que
+        mantém a união da coleção não é uma fórmula fixa, e sim o cuidado com as proporções, com a
+        seleção das cores e com a forma como cada elemento é colocado ao lado do outro.
+      </p>
+    </div>
+  </div>
+
+  <div class="container ensaio">
+    <p class="kicker">O ensaio fotográfico</p>
+    <div class="body measure">
+      <p>
+        Para o ensaio fotográfico, escolhemos a natureza como principal cenário da coleção.
+        Buscamos registrar de forma espontânea o contato das pessoas com esse ambiente, deixando
+        que as joias aparecessem integradas à paisagem e à maneira natural de usá-las. As imagens
+        também mostram uma relação que permanece muito próxima de nós: as joias nos acompanham,
+        ficam ligadas a momentos e lembranças e, com o tempo, ganham um valor afetivo para quem as
+        usa.
+      </p>
+      <p>
+        Em Tessalia, o mosaico funciona como uma maneira de construir e exercer a criatividade.
+        Escolhemos materiais, cores e formas distintas e trabalhamos cada parte até que exista
+        harmonia, sem apagar aquilo que torna cada elemento diferente. É dessa combinação entre
+        arte, natureza, pesquisa e trabalho joalheiro que surge a leitura da Oficina das Joias
+        para a primavera e o verão de 2026.
+      </p>
+    </div>
+
+    <ul class="gallery">
+      {
+        gallery.map((g) =>
+          g.type === "caption" ? (
+            <li class="gallery-item caption-card" data-reveal>
+              <p>{g.text}</p>
+            </li>
+          ) : (
+            <li class:list={["gallery-item", { wide: g.wide }]} data-reveal>
+              <span class:list={["frame", { tall: g.tall }]}>
+                <Image src={g.src} alt={g.alt} widths={[360, 640, 900, 1280]} sizes={g.wide ? "(min-width: 60rem) 46vw, 92vw" : "(min-width: 60rem) 22vw, 45vw"} />
+              </span>
+            </li>
+          )
+        )
+      }
+    </ul>
+  </div>
+
+  <SectionDivider variant="pink" flip />
+
+  <div class="container mosaico">
+    <p class="kicker">As peças</p>
+    <h3 class="mosaico-title" data-reveal>Um mosaico Tessalia</h3>
+    <p class="body measure mosaico-lede">
+      Tal como as tesselas de um mosaico, cada peça tem cor e formato próprios — e só revela sua
+      função completa quando vista ao lado das demais. Aqui, o still de cada joia da coleção,
+      lado a lado.
+    </p>
+
+    <ul class="mosaic">
+      {
+        mosaic.map((m) => (
+          <li class="mosaic-item" data-reveal>
+            <span class="tile">
+              <Image src={m.src} alt={m.alt} widths={[220, 360, 480]} sizes="(min-width: 60rem) 14vw, 30vw" />
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .collection {
+    background: var(--p-white);
+    padding-block: var(--space-section);
+  }
+
+  .intro {
+    text-align: center;
+    padding-block: clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .kicker {
+    color: var(--chapter-tessalia-a);
+  }
+
+  .wordmark {
+    font-family: var(--font-wordmark);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: clamp(2.8rem, 2.2rem + 4vw, 5.5rem);
+    letter-spacing: 0.02em;
+    color: var(--chapter-tessalia-a);
+    margin: 0.15em 0;
+  }
+
+  .subtitle {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.05rem, 1rem + 0.4vw, 1.4rem);
+    margin-inline: auto;
+  }
+
+  .body-grid {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  @media (min-width: 64rem) {
+    .body-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+    .body-grid > .body:first-child {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+    .guell-box {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .body-grid > .body:last-child {
+      grid-column: 2;
+      grid-row: 2;
+    }
+  }
+
+  .body p {
+    margin-bottom: 1.3em;
+  }
+
+  .body em {
+    font-family: var(--font-display);
+    font-style: italic;
+  }
+
+  /* a small stacked pair of photos — a first glimpse of the collection,
+     placed to balance the left column against the taller Güell aside +
+     second paragraph block on the right */
+  .teaser {
+    display: grid;
+    gap: 1.1rem;
+    margin-top: 1.6rem;
+  }
+
+  .teaser figure {
+    margin: 0;
+  }
+
+  .teaser img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    box-shadow: 0 14px 30px -18px rgba(30, 24, 10, 0.35);
+  }
+
+  .teaser figcaption {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+
+  .guell-box {
+    background: var(--chapter-tessalia-bg);
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-radius: 6px;
+    align-self: start;
+  }
+
+  .guell-box .figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+  }
+
+  .guell-box figcaption {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin: 0.5rem 0 1.25rem;
+  }
+
+  .guell-box p {
+    font-size: var(--fs-small);
+  }
+
+  .ensaio {
+    margin-top: var(--space-section);
+  }
+
+  .ensaio > .kicker {
+    color: var(--chapter-tessalia-a);
+    margin-bottom: 0.5rem;
+  }
+
+  .gallery {
+    list-style: none;
+    margin: clamp(2rem, 5vw, 3rem) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 40rem) {
+    .gallery {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .gallery-item.wide {
+    grid-column: span 2;
+  }
+
+  .gallery-item .frame {
+    position: relative;
+    display: block;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 3px;
+  }
+
+  .gallery-item .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 3 / 4;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .gallery-item .frame.tall img {
+    aspect-ratio: 3 / 5;
+  }
+
+  .gallery-item.wide .frame img {
+    aspect-ratio: 16 / 10;
+  }
+
+  /* a few tiles sit slightly off the grid line, echoing the collection's
+     "beleza não depende de uma regularidade absoluta" — a mosaic of
+     fragments, not a perfectly ruled grid */
+  .gallery-item:not(.wide):not(.caption-card):nth-child(4n + 1) .frame {
+    transform: translateY(0.6rem) rotate(-0.6deg);
+  }
+
+  .gallery-item:not(.wide):not(.caption-card):nth-child(4n + 3) .frame {
+    transform: translateY(-0.6rem) rotate(0.6deg);
+  }
+
+  .caption-card {
+    display: flex;
+    align-items: center;
+    background: var(--chapter-tessalia-bg);
+    border-radius: 3px;
+    padding: 1.25rem;
+  }
+
+  .caption-card p {
+    margin: 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(0.95rem, 0.85rem + 0.5vw, 1.15rem);
+    color: var(--chapter-tessalia-a);
+    line-height: 1.35;
+  }
+
+  .gallery-item:nth-child(4n + 1) {
+    transition-delay: 0ms;
+  }
+  .gallery-item:nth-child(4n + 2) {
+    transition-delay: 70ms;
+  }
+  .gallery-item:nth-child(4n + 3) {
+    transition-delay: 140ms;
+  }
+  .gallery-item:nth-child(4n + 4) {
+    transition-delay: 210ms;
+  }
+
+  .gallery-item:hover .frame img {
+    transform: scale(1.07);
+  }
+
+  /* a soft diagonal glint, like light catching a stone — sweeps across on
+     hover as a small nod to the jewelry itself, not just a generic zoom */
+  .gallery-item .frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.5) 50%, transparent 58%);
+    background-size: 250% 250%;
+    background-position: -40% -40%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .gallery-item:hover .frame::after {
+    opacity: 1;
+    animation: shine-sweep 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes shine-sweep {
+    from {
+      background-position: -40% -40%;
+    }
+    to {
+      background-position: 140% 140%;
+    }
+  }
+
+  .mosaico {
+    margin-top: var(--space-section);
+    text-align: center;
+  }
+
+  .mosaico-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.4rem);
+    color: var(--chapter-tessalia-a);
+    margin: 0.2em 0 0.6em;
+  }
+
+  .mosaico-lede {
+    margin-inline: auto;
+    color: var(--color-text-muted);
+  }
+
+  .mosaic {
+    list-style: none;
+    margin: clamp(2rem, 5vw, 3rem) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 40rem) {
+    .mosaic {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+
+  .mosaic-item .tile {
+    position: relative;
+    display: block;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 3px;
+  }
+
+  .mosaic-item .tile :global(img) {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mosaic-item:hover .tile :global(img) {
+    transform: scale(1.08);
+  }
+
+  .mosaic-item:nth-child(9n + 3) .tile {
+    transform: translateY(0.5rem) rotate(-1deg);
+  }
+
+  .mosaic-item:nth-child(9n + 7) .tile {
+    transform: translateY(-0.5rem) rotate(1deg);
+  }
+</style>

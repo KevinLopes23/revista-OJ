@@ -1,0 +1,251 @@
+---
+import { Image } from "astro:assets";
+import retrato from "../assets/photos/contato-retrato.jpg";
+import equipeFamilia from "../assets/photos/equipe-familia.jpg";
+import SectionDivider from "./SectionDivider.astro";
+
+const team = [
+  { role: "Fundador da OJ, Ourives e Relojoeiro", name: "Elias Batista" },
+  { role: "Gerente Geral, Ourives e Relojoeiro", name: "Paulo José C. Corrales" },
+  { role: "Direção Geral", name: "Elaine C. Batista Corrales" },
+  { role: "Coordenação de Produção", name: "Vivian Carvalho" },
+  { role: "Reportagem", name: "Fabiana V. Teixeira Frassato" },
+  { role: "Design Gráfico", name: "Pietra Mortágua Gelmini" },
+  { role: "Fotografia — Ensaio", name: "Ana Luísa Menes Sebastião (@by_menes)" },
+  { role: "Fotografia das Peças", name: "Fusion Produtora" },
+  { role: "Modelo", name: "Alice Batista Corrales" },
+  { role: "Impressão", name: "Gráfica Oliveira" },
+];
+---
+
+<section class="contact" id="contato" aria-labelledby="contact-heading">
+  <SectionDivider variant="green" />
+
+  <div class="container grid">
+    <div>
+      <p class="kicker">Contate-nos</p>
+      <h2 id="contact-heading" data-reveal>Vamos criar<br />sua próxima joia</h2>
+      <p class="subtitle measure">
+        Entre em contato com a Oficina das Joias para mais informações, ou para iniciar um
+        projeto.
+      </p>
+
+      <ul class="contact-list">
+        <li>
+          <a href="https://wa.me/5514997316864" rel="noopener">
+            <span class="label">WhatsApp / Telefone</span>
+            <span class="value">(14) 99731-6864</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/oficinadasjoias" rel="noopener" target="_blank">
+            <span class="label">Instagram</span>
+            <span class="value">@oficinadasjoias</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.oficinadasjoias.com.br" rel="noopener">
+            <span class="label">Site</span>
+            <span class="value">www.oficinadasjoias.com.br</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Av.+Nossa+Sra.+de+F%C3%A1tima%2C+10+-+Jardim+Am%C3%A9rica%2C+Bauru+-+SP"
+            rel="noopener"
+            target="_blank"
+          >
+            <span class="label">Endereço</span>
+            <span class="value">Av. Nossa Sra. de Fátima, 10 — Jardim América, Bauru - SP</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <Image src={retrato} alt="Modelo deitada entre flores, usando joias da coleção Tessalia" widths={[420, 800, 1200]} sizes="(min-width: 55rem) 24rem, 80vw" class="portrait" />
+  </div>
+
+  <div class="container team">
+    <div class="team-grid">
+      <Image src={equipeFamilia} alt="Equipe da Oficina das Joias reunida para uma foto" widths={[380, 700, 1000]} sizes="(min-width: 55rem) 22rem, 80vw" class="team-photo" />
+      <details>
+        <summary>Equipe desta edição</summary>
+        <ul>
+          {
+            team.map((t) => (
+              <li>
+                <span class="role">{t.role}</span>
+                <span class="name">{t.name}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-bar">
+    <p>© {new Date().getFullYear()} Oficina das Joias. Bauru — SP.</p>
+    <p class="issue">Revista OJ · Vol. 2 · Set 2026 · Coleção Tessalia</p>
+  </div>
+</footer>
+
+<style>
+  .contact {
+    background: var(--p-ink);
+    color: var(--p-cream);
+    padding-block: var(--space-section);
+  }
+
+  .grid {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3rem);
+    align-items: center;
+  }
+
+  @media (min-width: 55rem) {
+    .grid {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+
+  .kicker {
+    color: var(--chapter-contact-a);
+  }
+
+  h2 {
+    font-style: italic;
+    font-size: var(--fs-h2);
+    margin: 0.3em 0 0.6em;
+    color: var(--p-cream);
+  }
+
+  .subtitle {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.05rem, 1rem + 0.4vw, 1.4rem);
+    opacity: 0.85;
+  }
+
+  .contact-list {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .contact-list a {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    text-decoration: none;
+    padding-block: 1rem;
+    border-top: 1px solid color-mix(in srgb, var(--p-cream) 20%, transparent);
+    color: var(--p-cream);
+  }
+
+  .contact-list a:hover .value,
+  .contact-list a:focus-visible .value {
+    color: var(--chapter-contact-a);
+  }
+
+  .label {
+    font-size: var(--fs-small);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.65;
+  }
+
+  .value {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05rem;
+  }
+
+  .portrait {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .team {
+    margin-top: clamp(3rem, 7vw, 5rem);
+    border-top: 1px solid color-mix(in srgb, var(--p-cream) 20%, transparent);
+    padding-top: 2rem;
+  }
+
+  .team-grid {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  @media (min-width: 45rem) {
+    .team-grid {
+      grid-template-columns: 18rem 1fr;
+      align-items: start;
+    }
+  }
+
+  .team-photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .team summary {
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .team ul {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.6rem;
+    grid-template-columns: 1fr;
+    font-size: var(--fs-small);
+  }
+
+  @media (min-width: 40rem) {
+    .team ul {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .team li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    opacity: 0.85;
+  }
+
+  .team .role {
+    opacity: 0.6;
+  }
+
+  .site-footer {
+    background: var(--p-ink);
+    color: var(--p-cream);
+    border-top: 1px solid color-mix(in srgb, var(--p-cream) 15%, transparent);
+  }
+
+  .footer-bar {
+    padding-block: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    font-size: var(--fs-small);
+    opacity: 0.75;
+  }
+</style>
