@@ -16,8 +16,10 @@ const srcImages = join(root, "source-material", "extraction", "images");
 const srcGame = join(root, "source-material", "extraction", "game");
 const srcSupplied = join(root, "source-material", "supplied");
 const outPhotos = join(root, "src", "assets", "photos");
-const outGame = join(root, "src", "assets", "game");
 const outBrand = join(root, "src", "assets", "brand");
+const publicDir = join(root, "public");
+// --p-cream, the page/header background the brand art is composited onto
+const CREAM = "#fcf5e1";
 // served byte-for-byte, unprocessed by Astro's image pipeline: the coloring
 // game's flood-fill needs the exact thresholded pure black/white pixels,
 // not a re-encoded (even losslessly) copy.
@@ -28,7 +30,7 @@ if (!existsSync(srcImages)) {
   process.exit(0);
 }
 
-for (const dir of [outPhotos, outGame, outGamePublic, outBrand]) {
+for (const dir of [outPhotos, outGamePublic, outBrand]) {
   mkdirSync(dir, { recursive: true });
 }
 
@@ -154,7 +156,7 @@ for (const entry of PHOTOS) await convert(srcImages, entry, outPhotos);
 for (const entry of STRIPS) await convert(srcImages, entry, outPhotos);
 for (const entry of SUPPLIED) await convert(srcSupplied, entry, outPhotos);
 
-// coloring game line art + OJ monogram
+// coloring game line art
 if (existsSync(srcGame)) {
   // The card PDF's line art is a JPEG scan (soft/anti-aliased edges), which
   // is unusable for canvas flood-fill: a fill would leak through fuzzy
@@ -167,41 +169,58 @@ if (existsSync(srcGame)) {
     .png({ compressionLevel: 9 })
     .toFile(join(outGamePublic, "mosaic-lineart.png"));
   console.log("wrote public/game/mosaic-lineart.png (thresholded for flood-fill)");
-
-  await convert(srcGame, ["card_img1_115x130.jpeg", "oj-logo.jpg", 400], outGame);
 }
 
-// Tessalia brand mark for the header. The supplied file is the full lockup
-// on a page of white — the ring at rows 436-990, the TESSALIA wordmark
-// below it — and at 40px the wordmark is unreadable, so only the ring is
-// kept. Its paper is then swapped for the site's cream: threshold the
-// near-white to an alpha mask, cut it out, and flatten onto --p-cream, so
-// the mark meets the sticky bar's background instead of sitting on a white
-// tile. The grout between the tesserae goes cream along with it, which is
-// what the print edition does when it prints the mark on a cream page.
+// Tessalia brand mark for the header, and the favicons cut from the same
+// art. The supplied file is the full lockup on a page of white — the ring
+// at rows 436-990, the TESSALIA wordmark below it — and at the sizes these
+// are used the wordmark is a smudge, so only the ring is kept. Its paper is
+// then swapped for the site's cream: threshold the near-white to an alpha
+// mask, cut it out, and flatten onto --p-cream, so the mark meets the
+// sticky bar's background instead of sitting on a white tile. The grout
+// between the tesserae goes cream along with it, which is what the print
+// edition does when it prints the mark on a cream page.
 const brandSrc = join(srcSupplied, "tessalia-logo.jpg");
 if (existsSync(brandSrc)) {
   const RING = { left: 212, top: 436, width: 478, height: 555 };
   const ring = sharp(brandSrc).extract(RING);
   const paperMask = await ring.clone().greyscale().threshold(248).negate().toBuffer();
   const cut = await ring.clone().joinChannel(paperMask).png().toBuffer();
-  await sharp(cut)
-    .flatten({ background: "#fcf5e1" })
+  const onCream = () => sharp(cut).flatten({ background: CREAM });
+
+  await onCream()
     .resize({ width: 400 })
     .png({ compressionLevel: 9, palette: true })
     .toFile(join(outBrand, "tessalia-mark.png"));
   console.log("wrote src/assets/brand/tessalia-mark.png (ring only, paper swapped for cream)");
+
+  // favicons, straight into public/ (Astro serves that folder verbatim,
+  // unprocessed, which is what a favicon needs). The ring is taller than
+  // wide, so it is fitted inside the square on cream — sharp's default
+  // `cover` would crop to fill and take the diamond off the top.
+  //
+  // The 32px tab icon is saturated first. The ring is drawn in strokes a
+  // couple of source pixels wide; at 32px each one averages with the cream
+  // around it and the whole mark comes out pale enough to read as grey in
+  // a tab strip. Pushing the colour before the downscale gives the average
+  // something to land on. 180px keeps the art as drawn — at that size the
+  // strokes survive on their own.
+  const ICONS = [
+    [32, 1.8],
+    [180, 1],
+  ];
+  for (const [size, saturation] of ICONS) {
+    await sharp(cut)
+      .modulate({ saturation })
+      .flatten({ background: CREAM })
+      .resize({ width: size, height: size, fit: "contain", background: CREAM })
+      .png()
+      .toFile(join(publicDir, `favicon-${size}.png`));
+    console.log(`wrote public/favicon-${size}.png`);
+  }
 }
 
-// favicon + social share image, generated straight into public/ (Astro
-// serves that folder verbatim, unprocessed, which is what a favicon needs)
-const publicDir = join(root, "public");
-const logoSrc = join(srcGame, "card_img1_115x130.jpeg");
-if (existsSync(logoSrc)) {
-  const logo = sharp(logoSrc).extract({ left: 2, top: 2, width: 111, height: 126 });
-  await logo.clone().resize(32, 32).png().toFile(join(publicDir, "favicon-32.png"));
-  await logo.clone().resize(180, 180).png().toFile(join(publicDir, "favicon-180.png"));
-}
+// social share image, generated straight into public/ alongside the icons
 const coverSrc = join(srcImages, "p01_img0_2641x3728.jpeg");
 if (existsSync(coverSrc)) {
   await sharp(coverSrc)
