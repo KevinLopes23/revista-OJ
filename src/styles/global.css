@@ -28,6 +28,12 @@ html {
   }
 }
 
+/* jumping to a chapter has to clear the sticky bar, otherwise the heading
+   lands underneath it */
+:where(section[id], main[id]) {
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+}
+
 body {
   margin: 0;
   background: var(--color-bg);

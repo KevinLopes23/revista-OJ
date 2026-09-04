@@ -100,5 +100,8 @@
   --content-max: 74rem;
   --measure: 38rem;
   --space-section: clamp(4rem, 3rem + 5vw, 8rem);
+  /* height of the sticky bar — re-measured at runtime by scripts/nav.ts,
+     this is the pre-hydration fallback */
+  --header-h: 4rem;
   --radius: 2px;
 }

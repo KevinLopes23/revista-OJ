@@ -37,6 +37,10 @@ const links = [
   </div>
 </header>
 
+<script>
+  import "../scripts/nav";
+</script>
+
 <style>
   .site-header {
     position: sticky;
@@ -131,5 +135,11 @@ const links = [
   .menu a:hover,
   .menu a:focus-visible {
     background: var(--p-cream-soft);
+  }
+
+  /* the chapter currently sitting under the header */
+  .menu a[aria-current] {
+    font-weight: 600;
+    color: var(--p-crimson);
   }
 </style>
