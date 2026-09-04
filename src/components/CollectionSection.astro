@@ -441,9 +441,21 @@ const mosaic = [
     gap: clamp(0.75rem, 2vw, 1.25rem);
   }
 
+  /* three cards in two columns would strand the last one beside an empty
+     cell, so on phones the campaign film leads at full width and the other
+     two pair up under it. `:global` is needed because the <figure> is
+     rendered by VideoCard and carries that component's scope, not this one. */
+  .film-row > :global(.video-card:first-child) {
+    grid-column: 1 / -1;
+  }
+
   @media (min-width: 48rem) {
     .film-row {
       grid-template-columns: repeat(3, 1fr);
+    }
+
+    .film-row > :global(.video-card:first-child) {
+      grid-column: auto;
     }
   }
 
