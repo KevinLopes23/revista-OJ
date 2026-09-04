@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import logo from "../assets/game/oj-logo.jpg";
+import logo from "../assets/brand/tessalia-mark.png";
 
 const links = [
   { href: "#sumario", label: "Sumário" },
@@ -16,7 +16,14 @@ const links = [
 <header class="site-header">
   <div class="container bar">
     <a class="brand" href="#topo">
-      <Image src={logo} alt="Oficina das Joias" width={40} height={40} class="brand-mark" />
+      <Image
+        src={logo}
+        alt="Oficina das Joias"
+        width={44}
+        densities={[1, 2]}
+        loading="eager"
+        class="brand-mark"
+      />
       <span class="brand-name">Revista OJ</span>
     </a>
 
@@ -66,10 +73,12 @@ const links = [
     color: var(--color-text);
   }
 
+  /* the mark is a ring — already round, and taller than wide because of the
+     diamond on top — so it is sized by height and left uncropped rather
+     than being forced into a circle */
   .brand-mark {
-    border-radius: 50%;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: auto;
+    height: 2.5rem;
   }
 
   .brand-name {
@@ -77,6 +86,7 @@ const links = [
     font-style: italic;
     font-weight: 600;
     font-size: 1.15rem;
+    color: var(--p-coral);
   }
 
   .menu {

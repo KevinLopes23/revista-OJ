@@ -17,6 +17,7 @@ const srcGame = join(root, "source-material", "extraction", "game");
 const srcSupplied = join(root, "source-material", "supplied");
 const outPhotos = join(root, "src", "assets", "photos");
 const outGame = join(root, "src", "assets", "game");
+const outBrand = join(root, "src", "assets", "brand");
 // served byte-for-byte, unprocessed by Astro's image pipeline: the coloring
 // game's flood-fill needs the exact thresholded pure black/white pixels,
 // not a re-encoded (even losslessly) copy.
@@ -27,7 +28,7 @@ if (!existsSync(srcImages)) {
   process.exit(0);
 }
 
-for (const dir of [outPhotos, outGame, outGamePublic]) {
+for (const dir of [outPhotos, outGame, outGamePublic, outBrand]) {
   mkdirSync(dir, { recursive: true });
 }
 
@@ -168,6 +169,28 @@ if (existsSync(srcGame)) {
   console.log("wrote public/game/mosaic-lineart.png (thresholded for flood-fill)");
 
   await convert(srcGame, ["card_img1_115x130.jpeg", "oj-logo.jpg", 400], outGame);
+}
+
+// Tessalia brand mark for the header. The supplied file is the full lockup
+// on a page of white — the ring at rows 436-990, the TESSALIA wordmark
+// below it — and at 40px the wordmark is unreadable, so only the ring is
+// kept. Its paper is then swapped for the site's cream: threshold the
+// near-white to an alpha mask, cut it out, and flatten onto --p-cream, so
+// the mark meets the sticky bar's background instead of sitting on a white
+// tile. The grout between the tesserae goes cream along with it, which is
+// what the print edition does when it prints the mark on a cream page.
+const brandSrc = join(srcSupplied, "tessalia-logo.jpg");
+if (existsSync(brandSrc)) {
+  const RING = { left: 212, top: 436, width: 478, height: 555 };
+  const ring = sharp(brandSrc).extract(RING);
+  const paperMask = await ring.clone().greyscale().threshold(248).negate().toBuffer();
+  const cut = await ring.clone().joinChannel(paperMask).png().toBuffer();
+  await sharp(cut)
+    .flatten({ background: "#fcf5e1" })
+    .resize({ width: 400 })
+    .png({ compressionLevel: 9, palette: true })
+    .toFile(join(outBrand, "tessalia-mark.png"));
+  console.log("wrote src/assets/brand/tessalia-mark.png (ring only, paper swapped for cream)");
 }
 
 // favicon + social share image, generated straight into public/ (Astro

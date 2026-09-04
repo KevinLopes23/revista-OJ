@@ -31,6 +31,8 @@
   --p-crimson: #c6254f;
   --p-pink: #f2b9c8;
   --p-pink-hot: #e36888;
+  /* the coral the TESSALIA wordmark is set in, sampled off the logo art */
+  --p-coral: #ec6c80;
   /* laranja / pêssego (coleção tessalia) */
   --p-orange: #f19736;
   --p-peach: #fad7b1;
