@@ -14,6 +14,7 @@ import { fileURLToPath } from "node:url";
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const srcImages = join(root, "source-material", "extraction", "images");
 const srcGame = join(root, "source-material", "extraction", "game");
+const srcSupplied = join(root, "source-material", "supplied");
 const outPhotos = join(root, "src", "assets", "photos");
 const outGame = join(root, "src", "assets", "game");
 // served byte-for-byte, unprocessed by Astro's image pipeline: the coloring
@@ -105,10 +106,14 @@ const PHOTOS = [
   // outras seções
   ["p05_img2_716x708.jpeg", "history-mosaico-bizantino.jpg", 1200],
   ["p04_img4_971x688.jpeg", "craft-fachada.jpg", 1800],
-  ["p14_img4_4128x867.jpeg", "craft-detalhe-mao.jpg", 2200],
   ["p16_img0_1405x993.jpeg", "elaine-mesa.jpg", 1600],
   ["p04_img5_1518x1074.jpeg", "equipe-familia.jpg", 1800],
 ];
+
+// photos that did not come out of the PDF — supplied separately and kept in
+// source-material/supplied/ alongside the extraction, same as everything else
+// here: gitignored at source, shipped as the optimized file under src/assets.
+const SUPPLIED = [["relojoaria-bancada.jpg", "craft-relojoaria.jpg", 1800]];
 
 // decorative trencadís header/footer strips — reused verbatim from the
 // magazine's own layout as section dividers, one colorway per chapter.
@@ -146,6 +151,7 @@ async function convert(srcDir, [srcName, outName, maxSize], outDir) {
 
 for (const entry of PHOTOS) await convert(srcImages, entry, outPhotos);
 for (const entry of STRIPS) await convert(srcImages, entry, outPhotos);
+for (const entry of SUPPLIED) await convert(srcSupplied, entry, outPhotos);
 
 // coloring game line art + OJ monogram
 if (existsSync(srcGame)) {
