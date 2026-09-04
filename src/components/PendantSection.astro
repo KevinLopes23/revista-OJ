@@ -50,7 +50,10 @@ import SectionDivider from "./SectionDivider.astro";
   .pendant {
     background: var(--chapter-tessalia-bg);
     padding-block: var(--space-section);
+    /* same reason as the contact chapter: `hidden` on one axis forces the
+       other to `auto` and hands the section a scrollbar of its own */
     overflow-x: hidden;
+    overflow-x: clip;
   }
 
   .grid {

@@ -104,7 +104,12 @@ const team = [
     background: var(--p-ink);
     color: var(--p-cream);
     padding-block: var(--space-section);
+    /* clip, not hidden: `overflow-x: hidden` forces the other axis to `auto`,
+       which made the section its own scroll container and put a scrollbar
+       down its right edge. clip contains the motif's bleed without that.
+       The hidden above it is the fallback for browsers without clip. */
     overflow-x: hidden;
+    overflow-x: clip;
   }
 
   .lede {
