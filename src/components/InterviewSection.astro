@@ -133,8 +133,14 @@ import VideoCard from "./VideoCard.astro";
     gap: clamp(1.5rem, 4vw, 2.5rem);
   }
 
-  /* a 9:16 card would dominate a phone screen at full width */
+  /* The source film is only 464px wide, so it can't be blown up to fill a
+     desktop column without going soft — on a 2x screen even 320px already
+     uses nearly every pixel it has. Instead of stretching the video, the
+     empty space becomes a deliberate tinted panel with the card centred on
+     it, the way print sets a phone-shaped still on a coloured plate. */
   .video {
+    display: grid;
+    place-items: center;
     max-width: 17rem;
     margin-inline: auto;
   }
@@ -153,9 +159,17 @@ import VideoCard from "./VideoCard.astro";
     .video {
       grid-column: 2;
       grid-row: 1;
-      justify-self: end;
-      width: min(100%, 15rem);
+      justify-self: stretch;
+      max-width: none;
+      width: 100%;
       margin-inline: 0;
+      padding: clamp(1.25rem, 3vw, 2.25rem);
+      border-radius: 6px;
+      background: color-mix(in srgb, var(--chapter-interview-a) 12%, transparent);
+    }
+
+    .video :global(.video-card) {
+      width: min(100%, 20rem);
     }
     .photos {
       grid-column: 2;
