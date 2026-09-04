@@ -4,6 +4,7 @@ import retrato from "../assets/photos/elaine-retrato.jpg";
 import revista from "../assets/photos/elaine-revista.jpg";
 import mesa from "../assets/photos/elaine-mesa.jpg";
 import SectionDivider from "./SectionDivider.astro";
+import VideoCard from "./VideoCard.astro";
 ---
 
 <section class="interview" id="entrevista" aria-labelledby="interview-heading">
@@ -16,6 +17,15 @@ import SectionDivider from "./SectionDivider.astro";
         um negócio familiar.
       </p>
     </header>
+
+    <div class="video">
+      <VideoCard
+        src="/video/elaine-entrevista.mp4"
+        label="Vídeo com Elaine Batista Corrales falando sobre a coleção"
+        caption="Elaine, em vídeo"
+        duration="1:37"
+      />
+    </div>
 
     <div class="photos" data-reveal>
       <Image src={retrato} alt="Elaine Batista Corrales sorrindo ao ar livre" widths={[420, 800]} sizes="(min-width: 55rem) 22rem, 60vw" />
@@ -123,12 +133,29 @@ import SectionDivider from "./SectionDivider.astro";
     gap: clamp(1.5rem, 4vw, 2.5rem);
   }
 
+  /* a 9:16 card would dominate a phone screen at full width */
+  .video {
+    max-width: 17rem;
+    margin-inline: auto;
+  }
+
   @media (min-width: 60rem) {
     .grid {
       grid-template-columns: 1fr 1fr;
     }
+    /* the chapter opens with the title beside the video, which also fills
+       the space that used to sit empty to the right of the standfirst */
     .head {
-      grid-column: 1 / -1;
+      grid-column: 1;
+      grid-row: 1;
+      align-self: center;
+    }
+    .video {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+      width: min(100%, 15rem);
+      margin-inline: 0;
     }
     .photos {
       grid-column: 2;

@@ -11,6 +11,7 @@ import pingenteMadreperola from "../assets/photos/produto-pingente-madreperola.j
 import colarRubi from "../assets/photos/produto-colar-rubi.jpg";
 import trencadisPingente from "../assets/photos/trencadis-pingente-1.jpg";
 import SectionDivider from "./SectionDivider.astro";
+import VideoCard from "./VideoCard.astro";
 
 // ensaio fotográfico — fotos de lifestyle ao ar livre
 import piqueniqueLeitura from "../assets/photos/ensaio-piquenique-leitura.jpg";
@@ -226,6 +227,30 @@ const mosaic = [
       </p>
     </div>
 
+    <div class="films">
+      <p class="kicker films-kicker">Em movimento</p>
+      <div class="film-row">
+        <VideoCard
+          src="/video/tessalia-campanha.mp4"
+          label="Filme da coleção Tessalia, Verão 2026"
+          caption="Tessalia, Verão 2026"
+          duration="0:37"
+        />
+        <VideoCard
+          src="/video/tessalia-look.mp4"
+          label="A coleção Tessalia em movimento, no ensaio"
+          caption="A coleção em movimento"
+          duration="0:28"
+        />
+        <VideoCard
+          src="/video/tessalia-bastidores.mp4"
+          label="Bastidores do ensaio fotográfico da coleção"
+          caption="Bastidores do ensaio"
+          duration="0:45"
+        />
+      </div>
+    </div>
+
     <ul class="gallery">
       {
         gallery.map((g) =>
@@ -396,6 +421,30 @@ const mosaic = [
   .ensaio > .kicker {
     color: var(--chapter-tessalia-a);
     margin-bottom: 0.5rem;
+  }
+
+  /* the films are 9:16, so they read as a row of vertical cards — one per
+     column on a phone would make them taller than the screen, hence the
+     two-up on small widths and three-up once there is room */
+  .films {
+    margin-top: clamp(2rem, 5vw, 3rem);
+  }
+
+  .films-kicker {
+    color: var(--chapter-tessalia-a);
+    margin-bottom: 1rem;
+  }
+
+  .film-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.75rem, 2vw, 1.25rem);
+  }
+
+  @media (min-width: 48rem) {
+    .film-row {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   .gallery {

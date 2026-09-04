@@ -1,0 +1,75 @@
+---
+interface Props {
+  src: string;
+  label: string;
+  caption: string;
+  duration: string;
+}
+
+const { src, label, caption, duration } = Astro.props;
+---
+
+<figure class="video-card" data-reveal>
+  <div class="frame">
+    <!-- #t=0.1 makes the browser paint the opening frame as the poster, so no
+         separate poster file is needed — each of these films opens on its own
+         designed title card. `metadata` fetches only the header and that first
+         frame, not the whole file, so every card shows its card rather than a
+         black rectangle while still costing almost nothing until play. -->
+    <video
+      src={`${src}#t=0.1`}
+      controls
+      playsinline
+      preload="metadata"
+      aria-label={label}></video>
+  </div>
+  <figcaption>
+    <span class="cap">{caption}</span>
+    <span class="dur">{duration}</span>
+  </figcaption>
+</figure>
+
+<style>
+  .video-card {
+    margin: 0;
+  }
+
+  .frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--p-ink);
+    box-shadow: 0 20px 40px -22px rgba(30, 24, 10, 0.45);
+  }
+
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+    background: var(--p-ink);
+  }
+
+  figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 0.75rem;
+    margin-top: 0.55rem;
+  }
+
+  .cap {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+
+  .dur {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+</style>
