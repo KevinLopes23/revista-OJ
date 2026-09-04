@@ -208,23 +208,54 @@ const mosaic = [
   </div>
 
   <div class="container ensaio">
-    <p class="kicker">O ensaio fotográfico</p>
-    <div class="body measure">
-      <p>
-        Para o ensaio fotográfico, escolhemos a natureza como principal cenário da coleção.
-        Buscamos registrar de forma espontânea o contato das pessoas com esse ambiente, deixando
-        que as joias aparecessem integradas à paisagem e à maneira natural de usá-las. As imagens
-        também mostram uma relação que permanece muito próxima de nós: as joias nos acompanham,
-        ficam ligadas a momentos e lembranças e, com o tempo, ganham um valor afetivo para quem as
-        usa.
-      </p>
-      <p>
-        Em Tessalia, o mosaico funciona como uma maneira de construir e exercer a criatividade.
-        Escolhemos materiais, cores e formas distintas e trabalhamos cada parte até que exista
-        harmonia, sem apagar aquilo que torna cada elemento diferente. É dessa combinação entre
-        arte, natureza, pesquisa e trabalho joalheiro que surge a leitura da Oficina das Joias
-        para a primavera e o verão de 2026.
-      </p>
+    <div class="ensaio-head">
+      <div class="ensaio-text">
+        <p class="kicker">O ensaio fotográfico</p>
+        <div class="body measure">
+          <p>
+            Para o ensaio fotográfico, escolhemos a natureza como principal cenário da coleção.
+            Buscamos registrar de forma espontânea o contato das pessoas com esse ambiente,
+            deixando que as joias aparecessem integradas à paisagem e à maneira natural de
+            usá-las. As imagens também mostram uma relação que permanece muito próxima de nós: as
+            joias nos acompanham, ficam ligadas a momentos e lembranças e, com o tempo, ganham um
+            valor afetivo para quem as usa.
+          </p>
+          <p>
+            Em Tessalia, o mosaico funciona como uma maneira de construir e exercer a
+            criatividade. Escolhemos materiais, cores e formas distintas e trabalhamos cada parte
+            até que exista harmonia, sem apagar aquilo que torna cada elemento diferente. É dessa
+            combinação entre arte, natureza, pesquisa e trabalho joalheiro que surge a leitura da
+            Oficina das Joias para a primavera e o verão de 2026.
+          </p>
+        </div>
+      </div>
+
+      <aside class="ficha">
+        <div class="ficha-motif" aria-hidden="true"><SectionDivider variant="pink" /></div>
+        <p class="kicker ficha-kicker">Ficha técnica</p>
+        <dl>
+          <div>
+            <dt>Fotografia do ensaio</dt>
+            <dd>Ana Luísa Menes Sebastião <span class="handle">@by_menes</span></dd>
+          </div>
+          <div>
+            <dt>Modelo</dt>
+            <dd>Alice Batista Corrales</dd>
+          </div>
+          <div>
+            <dt>Fotografia das peças</dt>
+            <dd>Fusion Produtora</dd>
+          </div>
+          <div>
+            <dt>Coordenação de produção</dt>
+            <dd>Vivian Carvalho</dd>
+          </div>
+          <div>
+            <dt>Direção</dt>
+            <dd>Elaine C. Batista Corrales</dd>
+          </div>
+        </dl>
+      </aside>
     </div>
 
     <div class="films">
@@ -418,9 +449,78 @@ const mosaic = [
     margin-top: var(--space-section);
   }
 
-  .ensaio > .kicker {
+  .ensaio .kicker {
     color: var(--chapter-tessalia-a);
     margin-bottom: 0.5rem;
+  }
+
+  .ensaio-head {
+    display: grid;
+    gap: clamp(1.75rem, 4vw, 3rem);
+    align-items: start;
+  }
+
+  /* the standfirst is capped at --measure, so on a wide screen the right of
+     this row sat empty — the shoot's credits belong there, the way print
+     runs a ficha técnica beside the opening text of a photo essay */
+  @media (min-width: 64rem) {
+    .ensaio-head {
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+  }
+
+  .ficha {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    background: color-mix(in srgb, var(--chapter-tessalia-b) 16%, transparent);
+  }
+
+  .ficha-motif {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    opacity: 0.3;
+    pointer-events: none;
+    transform: scale(1.6) rotate(-4deg) translateY(18%);
+  }
+
+  .ficha-kicker,
+  .ficha dl {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ficha dl {
+    display: grid;
+    gap: 0.9rem;
+    margin: 0.9rem 0 0;
+  }
+
+  .ficha dt {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+  }
+
+  .ficha dd {
+    margin: 0.1rem 0 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.25;
+  }
+
+  .ficha .handle {
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    white-space: nowrap;
   }
 
   /* the films are 9:16, so they read as a row of vertical cards — one per
