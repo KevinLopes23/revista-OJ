@@ -237,8 +237,11 @@ const gifts = [
     color: var(--color-text-muted);
   }
 
+  /* the closing strip is the last child of the section, so the section's own
+     padding sits below it — the gap above it has to come from here, or the
+     button lands flush on the mosaic */
   .cta {
-    margin-top: clamp(2rem, 5vw, 3rem);
+    margin-block: clamp(2rem, 5vw, 3rem) clamp(2.5rem, 6vw, 4rem);
     text-align: center;
   }
 
