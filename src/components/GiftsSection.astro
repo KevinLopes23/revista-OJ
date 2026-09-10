@@ -1,0 +1,270 @@
+---
+import { Image } from "astro:assets";
+import SectionDivider from "./SectionDivider.astro";
+import conjunto from "../assets/photos/brinde-conjunto.jpg";
+import cartao from "../assets/photos/brinde-cartao-lapis.jpg";
+import vela from "../assets/photos/brinde-vela.jpg";
+import bodySplash from "../assets/photos/brinde-body-splash.jpg";
+
+const gifts = [
+  {
+    img: cartao,
+    alt: "Cartão de colorir da coleção Tessalia dentro do envelope rosa, ao lado de uma caixinha de lápis de cor",
+    name: "Cartão + lápis de cor",
+    threshold: "R$ 169,90",
+    text: "Nas compras a partir de R$ 169,90, você ganha um mimo exclusivo da coleção Tessália: um cartão com lápis de cor, desenvolvido especialmente para você criar a sua própria composição inspirada nos mosaicos da coleção.",
+  },
+  {
+    img: vela,
+    alt: "Vela perfumada Tessalia em lata com tampa estampada de mosaico, diante de rosas brancas",
+    name: "Vela",
+    threshold: "R$ 189,90",
+    text: "Nas compras a partir de R$ 189,90, você ganha uma vela perfumada exclusiva da coleção Tessália, desenvolvida especialmente para essa campanha e pensada para traduzir também no aroma e nos detalhes o universo da coleção.",
+  },
+  {
+    img: bodySplash,
+    alt: "Frasco de body splash Tessalia com efeito furta-cor e a marca da Oficina das Joias",
+    name: "Body splash",
+    threshold: "R$ 289,90",
+    text: "Nas compras a partir de R$ 289,90, você ganha o body splash exclusivo Tessália, desenvolvido especialmente para a coleção. Ao agitar, ele revela um efeito furta-cor, deixando o produto ainda mais especial e conectado ao conceito de Tessália.",
+  },
+];
+---
+
+<section class="gifts" id="mimos" aria-labelledby="gifts-heading">
+  <SectionDivider variant="pink" />
+
+  <div class="container head">
+    <p class="kicker">Compre e ganhe · Campanha Tessalia</p>
+    <h2 id="gifts-heading" data-reveal>Os mimos da coleção</h2>
+    <p class="subtitle measure">
+      Três brindes exclusivos, criados especialmente para esta campanha — cada um a partir de um
+      valor de compra.
+    </p>
+  </div>
+
+  <div class="container layout">
+    <figure class="hero" data-reveal>
+      <Image
+        src={conjunto}
+        alt="Os três mimos da coleção Tessalia sobre uma mesa: o cartão de colorir com lápis de cor, o body splash e a vela perfumada"
+        widths={[480, 900, 1400]}
+        sizes="(min-width: 64rem) 34rem, 92vw"
+      />
+      <figcaption>Os três mimos exclusivos da campanha Tessalia.</figcaption>
+    </figure>
+
+    <ol class="list">
+      {
+        gifts.map((g) => (
+          <li class="gift" data-reveal>
+            <span class="thumb">
+              <Image src={g.img} alt={g.alt} widths={[220, 360, 520]} sizes="(min-width: 40rem) 8.5rem, 6rem" />
+            </span>
+            <div class="gift-text">
+              <p class="threshold">a partir de {g.threshold}</p>
+              <h3>{g.name}</h3>
+              <p class="desc">{g.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+
+  <div class="container cta">
+    <p class="measure">
+      Os mimos são válidos enquanto durarem os estoques. Fale com a gente para saber mais sobre a
+      campanha e as peças da coleção.
+    </p>
+    <a class="button" href="https://wa.me/5514997316864" rel="noopener" target="_blank">
+      Falar no WhatsApp
+    </a>
+  </div>
+
+  <SectionDivider variant="pink" flip />
+</section>
+
+<style>
+  .gifts {
+    background: var(--chapter-tessalia-bg);
+    padding-block: var(--space-section);
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  .head {
+    text-align: center;
+    padding-block: clamp(1.5rem, 4vw, 3rem) clamp(2rem, 5vw, 3rem);
+  }
+
+  .kicker {
+    color: var(--chapter-tessalia-a);
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--fs-h2);
+    color: var(--chapter-tessalia-a);
+    margin: 0.15em 0 0.4em;
+    line-height: 1.05;
+  }
+
+  .subtitle {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.05rem, 1rem + 0.4vw, 1.4rem);
+    margin-inline: auto;
+  }
+
+  .layout {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: start;
+  }
+
+  @media (min-width: 64rem) {
+    .layout {
+      grid-template-columns: 0.95fr 1.05fr;
+    }
+
+    /* the opening still is the anchor of the spread — it stays in view while
+       the reader works down the three tiers beside it */
+    .hero {
+      position: sticky;
+      top: calc(var(--header-h) + 1.5rem);
+    }
+  }
+
+  .hero {
+    margin: 0;
+  }
+
+  .hero :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 22px 44px -22px rgba(100, 18, 40, 0.45);
+  }
+
+  .hero figcaption {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-top: 0.6rem;
+  }
+
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: clamp(1.25rem, 3vw, 2rem);
+    counter-reset: gift;
+  }
+
+  .gift {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: 1.1rem;
+    align-items: start;
+    background: var(--p-white);
+    border-radius: 6px;
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+    box-shadow: 0 14px 30px -22px rgba(100, 18, 40, 0.4);
+  }
+
+  @media (min-width: 40rem) {
+    .gift {
+      grid-template-columns: 8.5rem 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  .thumb {
+    display: block;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .thumb :global(img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .gift:hover .thumb :global(img) {
+    transform: scale(1.06);
+  }
+
+  .threshold {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--chapter-tessalia-a);
+    margin: 0;
+  }
+
+  .gift h3 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.3rem, 1.15rem + 0.8vw, 1.85rem);
+    margin: 0.15em 0 0.5em;
+    line-height: 1.1;
+  }
+
+  /* the tier number rides beside the name, the way a numbered list runs in
+     the print edition — but as a counter, so the <ol> keeps its semantics */
+  .gift h3::before {
+    counter-increment: gift;
+    content: counter(gift);
+    font-family: var(--font-body);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0.65em;
+    color: var(--chapter-tessalia-b);
+    margin-right: 0.5em;
+  }
+
+  .desc {
+    margin: 0;
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+  }
+
+  .cta {
+    margin-top: clamp(2rem, 5vw, 3rem);
+    text-align: center;
+  }
+
+  .cta p {
+    margin-inline: auto;
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+  }
+
+  .button {
+    display: inline-block;
+    margin-top: 1.25rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 999px;
+    background: var(--chapter-tessalia-a);
+    color: var(--p-white);
+    text-decoration: none;
+    font-size: var(--fs-small);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+
+  .button:hover,
+  .button:focus-visible {
+    background: var(--p-burgundy);
+    transform: translateY(-2px);
+  }
+</style>
