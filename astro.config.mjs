@@ -4,9 +4,10 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: replace with the final .com.br domain once it's registered —
-  // used for the sitemap and canonical/OG URLs. See README "Deploy" section.
-  site: "https://www.oficinadasjoias.com.br",
+  // the magazine's own domain — the shop lives at oficinadasjoias.com.br and
+  // is a separate site. Used for the sitemap and the canonical/OG URLs, so
+  // it has to be the host the link is actually shared as (apex, no www).
+  site: "https://revistaoj.com.br",
   integrations: [sitemap()],
   compressHTML: true,
   security: {

@@ -195,10 +195,13 @@ exemplo) — os arquivos já commitados em `src/assets/` são os que valem.
 
 1. Importe o repositório em [vercel.com](https://vercel.com) → *Add New Project*. O
    framework Astro é detectado automaticamente; não é preciso configurar nada.
-2. Em **Settings → Domains**, adicione o domínio `.com.br` da marca e siga as instruções
-   de DNS que a Vercel mostrar.
-3. Atualize `site:` em `astro.config.mjs` e `Sitemap:` em `public/robots.txt` para o
-   domínio final — isso ajusta as URLs do sitemap e as tags Open Graph.
+2. Em **Settings → Domains**, adicione o domínio e siga as instruções de DNS que a
+   Vercel mostrar. O domínio em produção é **revistaoj.com.br** (apex, sem `www`) —
+   `oficinadasjoias.com.br` é a loja, um site separado.
+3. Se o domínio mudar, atualize `site:` em `astro.config.mjs` e `Sitemap:` em
+   `public/robots.txt`. Esse valor monta a URL absoluta do `og:image` e da canonical:
+   se apontar para um host que não serve `/og-cover.jpg`, o preview do link no
+   WhatsApp e nas redes vem sem imagem.
 
 Cada `git push` para `main` publica uma nova versão. Não há painel administrativo porque
 não há necessidade: o conteúdo é editado direto nos componentes em `src/components/`.
