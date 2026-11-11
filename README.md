@@ -10,14 +10,19 @@
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-estrito-3178C6?logo=typescript&logoColor=white">
   <img alt="JavaScript enviado" src="https://img.shields.io/badge/JS%20enviado-~5%20KB-F7DF1E?logo=javascript&logoColor=black">
   <img alt="Bibliotecas no navegador" src="https://img.shields.io/badge/libs%20no%20navegador-0-2ea44f">
-  <img alt="Licença MIT" src="https://img.shields.io/badge/código-MIT-blue">
+  <a href="LICENSE"><img alt="Licença MIT" src="https://img.shields.io/badge/código-MIT-blue"></a>
+  <br>
+  <a href="https://revistaoj.com.br/"><img alt="Ver online" src="https://img.shields.io/badge/Ver_online-revistaoj.com.br-C2185B?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
 </p>
 
-![Capa da Revista OJ Vol. 2 — Tessalia](docs/screenshots/capa.jpg)
+<p align="center">
+  <img src="docs/preview.webp" alt="Capa da Revista OJ Vol. 2 — Tessalia no desktop" width="74%">
+  <img src="docs/preview-mobile.webp" alt="Capa da Revista OJ no celular" width="22%">
+</p>
 
 ---
 
-## O que é
+## 💡 O que é
 
 A **Oficina das Joias** é uma joalheria e relojoaria com mais de 70 anos, e publica uma
 revista impressa própria. Este repositório é a **Revista OJ Vol. 2 — Tessalia** em formato
@@ -214,3 +219,7 @@ O **conteúdo editorial** — fotografias, textos das matérias, a arte do mosai
 identidade visual da Revista OJ e da Oficina das Joias — **não** está coberto pela MIT e
 permanece propriedade da Oficina das Joias. Use o código à vontade; as fotos e os textos,
 não.
+
+## 👤 Autor
+
+Feito por [Kevin Lopes](https://github.com/KevinLopes23).
